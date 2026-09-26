@@ -19,8 +19,7 @@
 
 <header class="nav" id="top">
   <a class="nav__mark" href="#top" aria-label="Azul Clarito, inicio">
-    <img src="assets/azul-clarito-icon.jpg" alt="">
-    <span>Azul Clarito</span>
+    <img src="assets/azul-clarito-portada.jpg" alt="Azul Clarito">
   </a>
   <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">
     <span></span><span></span><span></span>
@@ -29,6 +28,7 @@
     <a href="#sobre-mi">Sobre mí</a>
     <a href="#ep">EP</a>
     <a href="#musica">Música</a>
+    <a href="#video">Video</a>
     <a href="#redes">Redes</a>
     <a href="#booking">Booking</a>
     <a class="nav__whatsapp" href="https://wa.me/50685916892?text=Hola%2C%20quiero%20agendar%20un%20show%20de%20Azul%20Clarito" target="_blank" rel="noopener">
@@ -43,7 +43,14 @@
   <section class="hero">
     <div class="hero__waves" aria-hidden="true"></div>
     <p class="hero__place">Limón, Costa Rica</p>
-    <img class="hero__portada" src="assets/azul-clarito-portada.jpg" alt="Azul Clarito">
+    <div class="carousel" id="carousel" aria-label="Galería de fotos">
+      <div class="carousel__track" id="carouselTrack">
+        <div class="carousel__empty"><p>Fotos próximamente</p></div>
+      </div>
+      <button class="carousel__arrow carousel__arrow--prev" id="carouselPrev" aria-label="Foto anterior" hidden>‹</button>
+      <button class="carousel__arrow carousel__arrow--next" id="carouselNext" aria-label="Foto siguiente" hidden>›</button>
+      <div class="carousel__dots" id="carouselDots"></div>
+    </div>
     <blockquote class="hero__quote">
       <span class="hero__quote-mark" aria-hidden="true">“</span>
       may my sounds sync your own &lt;3
@@ -119,6 +126,22 @@
           width="100%" height="352" frameborder="0"
           allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="video">
+    <div class="section__inner">
+      <h2 class="section__title">Video</h2>
+      <div class="rule rule--aqua"></div>
+      <div class="video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/gW8F9eN5Qf0"
+          title="Azul Clarito — video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
           loading="lazy"></iframe>
       </div>
     </div>
