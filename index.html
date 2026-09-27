@@ -44,13 +44,10 @@
   <section class="hero">
     <div class="hero__waves" aria-hidden="true"></div>
     <p class="hero__place">Limón, Costa Rica</p>
-    <div class="carousel" id="carousel" aria-label="Galería de fotos">
-      <div class="carousel__track" id="carouselTrack">
-        <div class="carousel__empty"><p>Fotos próximamente</p></div>
-      </div>
-      <button class="carousel__arrow carousel__arrow--prev" id="carouselPrev" aria-label="Foto anterior" hidden>‹</button>
-      <button class="carousel__arrow carousel__arrow--next" id="carouselNext" aria-label="Foto siguiente" hidden>›</button>
-      <div class="carousel__dots" id="carouselDots"></div>
+    <div class="photo-row">
+      <img class="photo-row__item" src="assets/gallery/foto-1.jpg" alt="Azul Clarito — foto 1">
+      <img class="photo-row__item photo-row__item--center" src="assets/gallery/foto-2.jpg" alt="Azul Clarito — foto 2">
+      <img class="photo-row__item" src="assets/gallery/foto-3.jpg" alt="Azul Clarito — foto 3">
     </div>
     <blockquote class="hero__quote">
       <span class="hero__quote-mark" aria-hidden="true">“</span>
@@ -129,6 +126,20 @@
       <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
         <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,100 L0,100 Z" fill="#BFEAFF"/>
       </svg>
+    </div>
+  </section>
+
+  <section class="section" id="spotify-home">
+    <div class="section__inner">
+      <div class="hero__spotify">
+        <iframe
+          title="Azul Clarito en Spotify"
+          src="https://open.spotify.com/embed/artist/1brdje9qLllYUDumAR4Vm9?utm_source=generator"
+          width="100%" height="352" frameborder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
     </div>
   </section>
 

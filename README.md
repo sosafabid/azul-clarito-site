@@ -77,23 +77,16 @@ Todos los enlaces (Apple Music, Spotify con reproductor incrustado, YouTube,
 redes sociales y el correo/WhatsApp de booking) ya están completos con datos
 reales — no queda ningún placeholder pendiente en `index.html`.
 
-## Fotos del carrusel
+## Fotos de la portada
 
-El carrusel de la portada arma solo la galería: solo tenés que ir agregando
-archivos a la carpeta `assets/gallery/` con estos nombres exactos:
+Son 3 fotos fijas, lado a lado (izquierda, centro, derecha). Colocalas en
+`assets/gallery/` con estos nombres exactos:
 
 ```
-assets/gallery/foto-1.jpg
-assets/gallery/foto-2.jpg
-assets/gallery/foto-3.jpg
-...
+assets/gallery/foto-1.jpg   → foto de la izquierda
+assets/gallery/foto-2.jpg   → foto del centro (un poco más grande)
+assets/gallery/foto-3.jpg   → foto de la derecha
 ```
 
-- Podés agregar hasta 12 fotos (`foto-1.jpg` a `foto-12.jpg`); si necesitás
-  más, avisá para subir ese número en `script.js` (buscá `MAX_PHOTOS`).
-- Tienen que ser `.jpg`. Si tu foto es `.png` o `.jpeg`, renombrala a `.jpg`
-  antes de subirla (o pedime que agregue esa extensión también).
-- No hace falta que estén todas — si solo subís `foto-1.jpg` y `foto-2.jpg`,
-  el carrusel arma solo esas dos, sin flechas si es nada más una.
-- Mientras no haya ninguna foto en esa carpeta, se muestra un aviso de
-  "Fotos próximamente" en su lugar — no rompe la página.
+Tienen que ser `.jpg` y las tres deberían tener una foto real — si falta
+alguna, el navegador va a mostrar el ícono de imagen rota en su lugar.
