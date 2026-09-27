@@ -389,8 +389,7 @@ img { max-width: 100%; display: block; }
   border: 3px solid var(--paper);
   box-shadow: 0 12px 26px rgba(11, 42, 91, 0.25);
   animation: about-float 6s ease-in-out infinite;
-}
-@keyframes about-float {
+}@keyframes about-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
@@ -471,11 +470,29 @@ img { max-width: 100%; display: block; }
 /* ---------- EP band ---------- */
 
 .ep {
+  position: relative;
+  overflow: hidden;
   background: var(--navy);
   color: var(--paper);
   padding: 80px 40px;
 }
-.ep__inner { max-width: 720px; margin: 0 auto; }
+.ep__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+
+.ep__deco {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 72%;
+  width: auto;
+  max-width: 22%;
+  object-fit: contain;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+.ep__deco--left { left: 8px; }
+.ep__deco--right { right: 8px; }
+
 .ep__tag {
   margin: 0 0 8px;
   font-family: 'Quicksand', sans-serif;
@@ -494,6 +511,47 @@ img { max-width: 100%; display: block; }
   max-width: 52ch;
   color: rgba(252, 254, 255, 0.85);
 }
+
+.ep__tracks {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+.ep__track {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.ep__track-name {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--paper);
+}
+.ep__track-date {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sun);
+  white-space: nowrap;
+}
+
+.ep__more {
+  display: inline-block;
+  margin-top: 26px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s ease;
+}
+.ep__more:hover { text-decoration-color: var(--paper); }
 
 /* ---------- Tracklist ---------- */
 
@@ -640,4 +698,6 @@ img { max-width: 100%; display: block; }
   .about__content { max-width: 100%; }
   .about__title { font-size: clamp(28px, 8vw, 36px); }
   .about__body p { max-width: 100%; }
+
+  .ep__deco { display: none; }
 }
