@@ -480,18 +480,17 @@ img { max-width: 100%; display: block; }
 
 .ep__deco {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 72%;
-  width: auto;
-  max-width: 22%;
-  object-fit: contain;
-  opacity: 0.9;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 180px;
+  object-fit: cover;
+  opacity: 0.95;
   pointer-events: none;
   z-index: 0;
 }
-.ep__deco--left { left: 8px; }
-.ep__deco--right { right: 8px; }
+.ep__deco--left { left: 0; }
+.ep__deco--right { right: 0; }
 
 .ep__tag {
   margin: 0 0 8px;
@@ -699,5 +698,9 @@ img { max-width: 100%; display: block; }
   .about__title { font-size: clamp(28px, 8vw, 36px); }
   .about__body p { max-width: 100%; }
 
+  .ep__deco { display: none; }
+}
+
+@media (max-width: 1100px) {
   .ep__deco { display: none; }
 }
