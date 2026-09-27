@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Booking — Azul Clarito</title>
-<meta name="description" content="Contratá un show de Azul Clarito en Limón, Costa Rica.">
+<meta name="description" content="Configurá tu experiencia musical con Azul Clarito y recibí una estimación al instante.">
 <meta property="og:title" content="Azul Clarito — Booking">
 <meta property="og:image" content="assets/azul-clarito-badge.jpg">
 <meta property="og:type" content="website">
@@ -13,6 +13,96 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* ===== Cotizador — estilos propios de booking.html ===== */
+.quote { max-width: 1080px; margin: 0 auto; padding: 0 24px 100px; }
+.quote__head { max-width: 720px; margin: 0 auto 40px; text-align: center; }
+.quote__head .section__title { margin-bottom: 6px; }
+.quote__sub { font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 18px; color: var(--navy); margin: 16px 0 0; }
+.quote__lede { color: rgba(22,50,79,0.75); margin: 14px 0 0; }
+.quote__cta { margin-top: 28px; }
+
+.quote__quick { text-align: center; margin: 18px 0 0; font-size: 14px; color: rgba(22,50,79,0.65); }
+.quote__quick a { color: var(--aqua); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+.quote__grid { display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start; margin-top: 56px; }
+.quote__form { display: flex; flex-direction: column; gap: 28px; }
+
+.qstep { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 28px; transition: box-shadow 0.2s ease; }
+.qstep:focus-within { box-shadow: 0 10px 30px rgba(11,42,91,0.10); }
+.qstep__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 17px; color: var(--navy); margin: 0 0 6px; }
+.qstep__note { font-size: 13px; color: rgba(22,50,79,0.6); margin: 0 0 16px; }
+
+.qfield { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
+.qfield label { font-size: 13px; font-weight: 700; color: var(--navy); }
+.qfield select, .qfield input[type="text"], .qfield input[type="date"], .qfield input[type="number"],
+.qfield input[type="email"], .qfield input[type="tel"], .qfield textarea {
+  font-family: 'Nunito', sans-serif; font-size: 15px; color: var(--ink);
+  border: 1.5px solid var(--line); border-radius: 12px; padding: 11px 14px;
+  background: #fff; width: 100%;
+}
+.qfield select:focus, .qfield input:focus, .qfield textarea:focus { outline: 2px solid var(--aqua); outline-offset: 1px; }
+.qfield textarea { min-height: 84px; resize: vertical; font-family: inherit; }
+.qhint { background: #FFF8EC; border-radius: 10px; padding: 10px 14px; font-size: 13px; color: #8A5A00; margin-top: 10px; }
+
+.qgrid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .qgrid2 { grid-template-columns: 1fr; } }
+
+.fmt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+@media (max-width: 640px) { .fmt-grid { grid-template-columns: 1fr; } }
+.fmt-card {
+  position: relative; display: flex; flex-direction: column; gap: 6px;
+  border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.fmt-card input { position: absolute; opacity: 0; }
+.fmt-card__name { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 15px; color: var(--navy); }
+.fmt-card__desc { font-size: 13px; color: rgba(22,50,79,0.7); line-height: 1.5; }
+.fmt-card__price { font-size: 13px; font-weight: 700; color: var(--aqua); margin-top: 2px; }
+.fmt-card:hover { border-color: var(--aqua); }
+.fmt-card:has(input:checked) { border-color: var(--navy); background: #F5FAFF; box-shadow: 0 6px 18px rgba(11,42,91,0.10); }
+.fmt-card:has(input:focus-visible) { outline: 2px solid var(--aqua); outline-offset: 2px; }
+
+.qcheck-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.qcheck { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink); cursor: pointer; }
+.qcheck input { margin-top: 3px; }
+
+.qradio-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.qradio { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink); cursor: pointer; }
+.qradio input { margin-top: 3px; }
+
+[data-conditional] { display: none; }
+[data-conditional].is-shown { display: block; }
+
+/* Resumen */
+.qsummary {
+  position: sticky; top: 96px; background: var(--navy); color: var(--paper);
+  border-radius: 22px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px;
+}
+.qsummary__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 18px; margin: 0; }
+.qsummary__row { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; border-top: 1px solid rgba(255,255,255,0.14); padding-top: 10px; }
+.qsummary__row:first-of-type { border-top: none; padding-top: 0; }
+.qsummary__label { color: rgba(252,254,255,0.65); }
+.qsummary__value { text-align: right; color: var(--paper); font-weight: 600; max-width: 60%; }
+.qsummary__price { margin-top: 6px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.2); }
+.qsummary__price-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sun); font-weight: 700; }
+.qsummary__price-value { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 26px; margin-top: 4px; }
+.qsummary__note { font-size: 11.5px; color: rgba(252,254,255,0.55); line-height: 1.5; }
+.qsummary__pill { display: inline-block; font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.12); padding: 4px 10px; border-radius: 999px; margin-top: 6px; }
+
+@media (max-width: 900px) {
+  .quote__grid { grid-template-columns: 1fr; }
+  .qsummary { position: static; order: 99; }
+}
+
+.qcontact { margin-top: 40px; }
+.qcontact__title { font-size: clamp(24px, 3.2vw, 30px); }
+.qactions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 22px; }
+.qerror { color: #C0392B; font-size: 13px; margin-top: 10px; display: none; }
+.qerror.is-shown { display: block; }
+.qsent { display: none; background: #EAFAF0; border: 1px solid #B7E4C7; color: #1B7A43; border-radius: 12px; padding: 14px 16px; font-size: 14px; margin-top: 16px; }
+.qsent.is-shown { display: block; }
+</style>
 </head>
 <body>
 
@@ -40,20 +130,407 @@
 
 <main>
   <section class="section section--page section--booking" id="booking">
-    <div class="section__inner">
-      <h1 class="section__title">¿Querés contratar un show?</h1>
-      <div class="rule rule--pink"></div>
-      <p class="about__text booking__text">
-        Disponible en formato solista (voz y guitarra), dúo con músico, o voz con pistas.
-        Escribime por WhatsApp y coordinamos fecha, lugar y detalles al toque.
-      </p>
-      <div class="booking__actions">
-        <a class="btn btn--whatsapp" href="https://wa.me/50685916892?text=Hola%2C%20quiero%20agendar%20un%20show%20de%20Azul%20Clarito" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12.04 2.003c-5.52 0-9.99 4.47-9.99 9.99 0 1.76.46 3.48 1.34 4.99L2 22l5.13-1.35a9.96 9.96 0 0 0 4.91 1.29h.01c5.52 0 9.99-4.47 9.99-9.99 0-2.67-1.04-5.18-2.93-7.07a9.93 9.93 0 0 0-7.07-2.87zm0 18.16h-.01a8.3 8.3 0 0 1-4.24-1.16l-.3-.18-3.04.8.81-2.96-.2-.3a8.3 8.3 0 0 1-1.28-4.4c0-4.6 3.75-8.34 8.36-8.34 2.23 0 4.33.87 5.9 2.45a8.27 8.27 0 0 1 2.44 5.9c0 4.6-3.75 8.19-8.44 8.19z"/></svg>
-          Agendar por WhatsApp
-        </a>
-        <a class="link-mail" href="mailto:mariamayaceleste@gmail.com">mariamayaceleste@gmail.com</a>
+    <div class="quote">
+
+      <div class="quote__head">
+        <h1 class="section__title">Creemos algo especial para tu evento</h1>
+        <div class="rule rule--pink" style="margin-left:auto;margin-right:auto;"></div>
+        <p class="quote__sub">Elegí el formato musical que mejor se adapte a tu ocasión y recibí una estimación personalizada para contratar a Azul Clarito.</p>
+        <p class="quote__lede">Música en vivo para bodas, celebraciones, eventos privados, hoteles, restaurantes, eventos corporativos y experiencias especiales.</p>
+        <div class="quote__cta">
+          <a href="#cotizador" class="btn btn--whatsapp" id="startBtn" style="background:var(--navy);box-shadow:none;">Configurar mi experiencia musical</a>
+        </div>
+        <p class="quote__quick">¿Preferís escribir directo? <a href="https://wa.me/50685916892?text=Hola%2C%20quiero%20agendar%20un%20show%20de%20Azul%20Clarito" target="_blank" rel="noopener">Hablemos por WhatsApp</a> o escribí a <a href="mailto:mariamayaceleste@gmail.com">mariamayaceleste@gmail.com</a>.</p>
       </div>
+
+      <form class="quote__grid" id="cotizador" novalidate>
+        <div class="quote__form">
+
+          <!-- 1. Tipo de evento -->
+          <div class="qstep">
+            <h2 class="qstep__title">¿Para qué tipo de evento estás buscando música?</h2>
+            <div class="qfield">
+              <select id="tipoEvento" required>
+                <option value="" selected disabled>Elegí una opción</option>
+
+        <optgroup label="Bodas y ceremonias">
+          <option value="Boda completa">Boda completa</option>
+          <option value="Ceremonia civil">Ceremonia civil</option>
+          <option value="Ceremonia religiosa">Ceremonia religiosa</option>
+          <option value="Música para iglesia o misa">Música para iglesia o misa</option>
+          <option value="Cóctel de boda">Cóctel de boda</option>
+          <option value="Recepción de boda">Recepción de boda</option>
+          <option value="Primer baile o canción especial">Primer baile o canción especial</option>
+          <option value="Pedida de mano">Pedida de mano</option>
+          <option value="Aniversario de bodas">Aniversario de bodas</option>
+        </optgroup>
+        <optgroup label="Eventos privados">
+          <option value="Cumpleaños">Cumpleaños</option>
+          <option value="Serenata">Serenata</option>
+          <option value="Cena privada">Cena privada</option>
+          <option value="Aniversario">Aniversario</option>
+          <option value="Celebración familiar">Celebración familiar</option>
+          <option value="Fiesta privada">Fiesta privada</option>
+          <option value="Baby shower">Baby shower</option>
+          <option value="Reunión especial">Reunión especial</option>
+          <option value="Graduación">Graduación</option>
+          <option value="Fiesta de compromiso">Fiesta de compromiso</option>
+        </optgroup>
+        <optgroup label="Hoteles, restaurantes y turismo">
+          <option value="Restaurante">Restaurante</option>
+          <option value="Café o bar">Café o bar</option>
+          <option value="Hotel">Hotel</option>
+          <option value="Resort o experiencia turística">Resort o experiencia turística</option>
+          <option value="Sunset session">Sunset session</option>
+          <option value="Música para huéspedes">Música para huéspedes</option>
+          <option value="Cena temática">Cena temática</option>
+          <option value="Evento gastronómico">Evento gastronómico</option>
+        </optgroup>
+        <optgroup label="Empresas y marcas">
+          <option value="Evento corporativo">Evento corporativo</option>
+          <option value="Cena empresarial">Cena empresarial</option>
+          <option value="Cóctel empresarial">Cóctel empresarial</option>
+          <option value="Lanzamiento de producto">Lanzamiento de producto</option>
+          <option value="Activación de marca">Activación de marca</option>
+          <option value="Convención o congreso">Convención o congreso</option>
+          <option value="Gala o premiación">Gala o premiación</option>
+          <option value="Fiesta de fin de año">Fiesta de fin de año</option>
+          <option value="Evento institucional">Evento institucional</option>
+          <option value="Evento de reconocimiento">Evento de reconocimiento</option>
+        </optgroup>
+        <optgroup label="Cultura y educación">
+          <option value="Festival cultural">Festival cultural</option>
+          <option value="Teatro o centro cultural">Teatro o centro cultural</option>
+          <option value="Feria">Feria</option>
+          <option value="Evento comunitario">Evento comunitario</option>
+          <option value="Colegio">Colegio</option>
+          <option value="Universidad">Universidad</option>
+          <option value="Graduación institucional">Graduación institucional</option>
+          <option value="Actividad cultural">Actividad cultural</option>
+          <option value="Evento benéfico">Evento benéfico</option>
+        </optgroup>
+        <optgroup label="Otros">
+          <option value="Otro tipo de evento">Otro tipo de evento</option>
+        </optgroup>
+
+              </select>
+            </div>
+            <div class="qfield" data-conditional data-show-when="tipoEvento=Otro tipo de evento">
+              <label for="tipoEventoOtro">Contanos de qué se trata</label>
+              <input type="text" id="tipoEventoOtro" placeholder="Describí la ocasión">
+            </div>
+          </div>
+
+          <!-- 2. Formato musical -->
+          <div class="qstep">
+            <h2 class="qstep__title">¿Cómo te gustaría vivir la música?</h2>
+            <div class="fmt-grid">
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="pistas" data-base="225000" data-musicos="1">
+          <span class="fmt-card__name">Voz con pistas</span>
+          <span class="fmt-card__desc">La voz de Azul Clarito acompañada de secuencias musicales.</span>
+          <span class="fmt-card__price">₡225.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="guitarra" data-base="200000" data-musicos="2">
+          <span class="fmt-card__name">Voz y guitarra</span>
+          <span class="fmt-card__desc">Una presentación acústica, íntima y cercana.</span>
+          <span class="fmt-card__price">₡200.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="piano" data-base="250000" data-musicos="2">
+          <span class="fmt-card__name">Voz y piano</span>
+          <span class="fmt-card__desc">Un formato elegante y melódico, ideal para ceremonias y ambientes íntimos.</span>
+          <span class="fmt-card__price">₡250.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="guitarra_piano" data-base="300000" data-musicos="3">
+          <span class="fmt-card__name">Voz, guitarra y piano</span>
+          <span class="fmt-card__desc">Un formato acústico más completo, con mayor riqueza armónica.</span>
+          <span class="fmt-card__price">₡300.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="piano_percusion" data-base="350000" data-musicos="3">
+          <span class="fmt-card__name">Voz, piano y percusión</span>
+          <span class="fmt-card__desc">Una experiencia acústica con ritmo y mayor energía.</span>
+          <span class="fmt-card__price">₡350.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="guitarra_percusion" data-base="275000" data-musicos="3">
+          <span class="fmt-card__name">Voz, guitarra y percusión</span>
+          <span class="fmt-card__desc">Un formato orgánico con raíces y energía caribeña.</span>
+          <span class="fmt-card__price">₡275.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="guitarra_piano_percusion" data-base="375000" data-musicos="4">
+          <span class="fmt-card__name">Voz, guitarra, piano y percusión</span>
+          <span class="fmt-card__desc">Un ensamble acústico ampliado.</span>
+          <span class="fmt-card__price">₡375.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="guitarra_bajo_percusion" data-base="425000" data-musicos="4">
+          <span class="fmt-card__name">Voz, guitarra, bajo y percusión</span>
+          <span class="fmt-card__desc">Un formato con base rítmica completa.</span>
+          <span class="fmt-card__price">₡425.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="completo" data-base="500000" data-musicos="5">
+          <span class="fmt-card__name">Voz, guitarra, piano, bajo y percusión</span>
+          <span class="fmt-card__desc">Un ensamble ampliado para eventos que requieren una experiencia musical más completa.</span>
+          <span class="fmt-card__price">₡500.000 / 60 min</span>
+        </label>
+        <label class="fmt-card">
+          <input type="radio" name="formato" value="personalizado" data-base="" data-musicos="">
+          <span class="fmt-card__name">Formato personalizado</span>
+          <span class="fmt-card__desc">Contanos qué instrumentos o músicos te gustaría incluir.</span>
+          <span class="fmt-card__price">A cotizar</span>
+        </label>
+            </div>
+            <div class="qfield" data-conditional data-show-when="formato=personalizado">
+              <label>Instrumentos adicionales (elegí los que necesites)</label>
+              <div class="qcheck-list">
+                <label class="qcheck"><input type="checkbox" name="instrumento" value="Piano"> Piano</label>
+                <label class="qcheck"><input type="checkbox" name="instrumento" value="Percusión"> Percusión</label>
+                <label class="qcheck"><input type="checkbox" name="instrumento" value="Bajo"> Bajo</label>
+                <label class="qcheck"><input type="checkbox" name="instrumento" value="Guitarra adicional"> Guitarra adicional</label>
+                <label class="qcheck"><input type="checkbox" name="instrumento" value="Coros o segunda voz"> Coros o segunda voz</label>
+                <label class="qcheck"><input type="checkbox" name="instrumento" value="Vientos"> Vientos</label>
+                <label class="qcheck"><input type="checkbox" id="instrumentoOtroCheck" value="Otro"> Otro instrumento</label>
+              </div>
+              <div class="qfield" data-conditional data-show-when="instrumentoOtroCheck=on">
+                <input type="text" id="instrumentoOtroTexto" placeholder="¿Cuál otro instrumento?">
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Modalidad / duración -->
+          <div class="qstep">
+            <h2 class="qstep__title">¿Cómo querés contratar la música?</h2>
+            <div class="qfield">
+              <select id="duracion" required>
+                <option value="" selected disabled>Elegí una duración</option>
+          <option value="15">Serenata de 15 minutos</option>
+          <option value="30">Serenata de 30 minutos</option>
+          <option value="45">Show de 45 minutos</option>
+          <option value="60">Show de 60 minutos</option>
+          <option value="90">Show de 90 minutos</option>
+          <option value="120">Show de 2 horas</option>
+          <option value="varias">Música en vivo durante varias horas</option>
+          <option value="paquete">Paquete personalizado</option>
+              </select>
+            </div>
+            <p class="qhint" id="serenataAviso" data-conditional>Las serenatas se cotizan según ubicación, duración, formato musical y repertorio solicitado.</p>
+
+            <div class="qfield" data-conditional data-show-when="duracion=varias">
+              <div class="qgrid2">
+                <div>
+                  <label for="variasHoras">Cantidad de horas</label>
+                  <input type="number" id="variasHoras" min="1" placeholder="Ej: 4">
+                </div>
+                <div>
+                  <label for="variasBloques">Número de bloques</label>
+                  <input type="number" id="variasBloques" min="1" placeholder="Ej: 2">
+                </div>
+                <div>
+                  <label for="variasDuracionBloque">Duración de cada bloque</label>
+                  <input type="text" id="variasDuracionBloque" placeholder="Ej: 45 min">
+                </div>
+                <div>
+                  <label for="variasDescanso">Descanso entre bloques</label>
+                  <input type="text" id="variasDescanso" placeholder="Ej: 15 min">
+                </div>
+              </div>
+            </div>
+
+            <div class="qfield" data-conditional data-show-when="duracion=paquete">
+              <label for="paqueteDetalle">Contanos qué necesitás</label>
+              <textarea id="paqueteDetalle" placeholder="Describí el paquete que tenés en mente"></textarea>
+            </div>
+          </div>
+
+          <!-- 4. Ubicación -->
+          <div class="qstep">
+            <h2 class="qstep__title">¿Dónde se realizará tu evento?</h2>
+            <div class="qgrid2">
+              <div class="qfield">
+                <label for="provincia">Provincia</label>
+                <select id="provincia" required>
+                  <option value="" selected disabled>Elegí una provincia</option>
+          <option value="Limón">Limón</option>
+          <option value="San José">San José</option>
+          <option value="Alajuela">Alajuela</option>
+          <option value="Heredia">Heredia</option>
+          <option value="Cartago">Cartago</option>
+          <option value="Guanacaste">Guanacaste</option>
+          <option value="Puntarenas">Puntarenas</option>
+                </select>
+              </div>
+              <div class="qfield">
+                <label for="canton">Cantón</label>
+                <select id="canton" required>
+                  <option value="" selected disabled>Elegí primero la provincia</option>
+                </select>
+              </div>
+            </div>
+            <div class="qfield">
+              <label for="distrito">Distrito</label>
+              <input type="text" id="distrito" placeholder="Distrito">
+            </div>
+            <div class="qfield">
+              <label for="venue">Lugar o nombre del venue</label>
+              <input type="text" id="venue" placeholder="Ej: Hotel Playa Bonita">
+            </div>
+            <div class="qfield">
+              <label for="direccion">Dirección o enlace de Google Maps (opcional)</label>
+              <input type="text" id="direccion" placeholder="Opcional">
+            </div>
+            <p class="qhint" id="transporteAviso">Seleccioná la provincia para ver si tu zona está dentro del transporte local.</p>
+
+            <div class="qfield">
+              <label>El evento ofrece</label>
+              <div class="qcheck-list">
+                <label class="qcheck"><input type="checkbox" name="servicio" value="Transporte para la artista y músicos"> Transporte para la artista y músicos</label>
+                <label class="qcheck"><input type="checkbox" name="servicio" value="Alimentación"> Alimentación</label>
+                <label class="qcheck"><input type="checkbox" name="servicio" value="Hospedaje"> Hospedaje</label>
+                <label class="qcheck"><input type="checkbox" name="servicio" value="Ninguno de los anteriores" id="servicioNinguno"> Ninguno de los anteriores</label>
+                <label class="qcheck"><input type="checkbox" name="servicio" value="No estoy segura/o" id="servicioNS"> No estoy segura/o</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Sonido -->
+          <div class="qstep">
+            <h2 class="qstep__title">¿El lugar cuenta con sonido y equipo?</h2>
+            <div class="qradio-list">
+              <label class="qradio"><input type="radio" name="sonido" value="Sí, cuenta con sonido profesional y técnico" checked> Sí, cuenta con sonido profesional y técnico</label>
+              <label class="qradio"><input type="radio" name="sonido" value="Cuenta con parte del equipo"> Cuenta con parte del equipo</label>
+              <label class="qradio"><input type="radio" name="sonido" value="No cuenta con equipo de sonido"> No cuenta con equipo de sonido</label>
+              <label class="qradio"><input type="radio" name="sonido" value="No estoy segura/o"> No estoy segura/o</label>
+            </div>
+            <div class="qfield" data-conditional id="sonidoDetalleWrap">
+              <label>¿Qué hace falta? (marcá lo que aplique)</label>
+              <div class="qcheck-list">
+                <label class="qcheck"><input type="checkbox" name="sonidoFalta" value="Sistema de sonido"> Sistema de sonido</label>
+                <label class="qcheck"><input type="checkbox" name="sonidoFalta" value="Micrófonos"> Micrófonos</label>
+                <label class="qcheck"><input type="checkbox" name="sonidoFalta" value="Consola"> Consola</label>
+                <label class="qcheck"><input type="checkbox" name="sonidoFalta" value="Monitores"> Monitores</label>
+                <label class="qcheck"><input type="checkbox" name="sonidoFalta" value="Técnico de sonido"> Técnico de sonido</label>
+                <label class="qcheck"><input type="checkbox" name="sonidoFalta" value="Piano disponible en el venue"> Piano disponible en el venue</label>
+                <label class="qcheck"><input type="checkbox" name="sonidoFalta" value="Batería o percusión disponible"> Batería o percusión disponible</label>
+              </div>
+              <input type="text" id="sonidoOtros" placeholder="Otros requerimientos (opcional)" style="margin-top:10px;">
+            </div>
+            <p class="qhint">El sonido y los requerimientos técnicos se cotizan por separado según el espacio y el formato musical.</p>
+          </div>
+
+          <!-- 6. Repertorio -->
+          <div class="qstep">
+            <h2 class="qstep__title">¿Hay alguna canción o detalle especial que debamos preparar?</h2>
+            <div class="qfield">
+              <select id="repertorio">
+                <option value="Repertorio de Azul Clarito" selected>Repertorio de Azul Clarito</option>
+                <option value="Me gustaría solicitar canciones específicas">Me gustaría solicitar canciones específicas</option>
+                <option value="Quiero una canción dedicada o personalizada">Quiero una canción dedicada o personalizada</option>
+                <option value="Necesito música especial para ceremonia religiosa">Necesito música especial para ceremonia religiosa</option>
+                <option value="Quiero combinar música original y versiones">Quiero combinar música original y versiones</option>
+                <option value="Quiero conversar sobre el repertorio">Quiero conversar sobre el repertorio</option>
+              </select>
+            </div>
+            <div class="qfield" data-conditional data-show-when="repertorio=Me gustaría solicitar canciones específicas|Quiero una canción dedicada o personalizada">
+              <label for="repertorioDetalle">Títulos, artistas de referencia o detalles</label>
+              <textarea id="repertorioDetalle" placeholder="Contanos qué canciones o detalles tenés en mente"></textarea>
+              <div class="qgrid2" style="margin-top:10px;">
+                <div>
+                  <label for="cancionesCantidad">Cantidad aproximada de canciones especiales</label>
+                  <input type="number" id="cancionesCantidad" min="0">
+                </div>
+              </div>
+              <label class="qcheck" style="margin-top:10px;"><input type="checkbox" id="requiereArreglo"> Requiere arreglo o ensayo especial</label>
+              <label class="qcheck"><input type="checkbox" id="cancionOriginal"> Me gustaría que interprete una canción original de Azul Clarito</label>
+            </div>
+            <p class="qhint">Cualquier arreglo, ensayo o preparación adicional será confirmado en la cotización final.</p>
+          </div>
+
+        </div>
+
+        <!-- Resumen -->
+        <aside class="qsummary" id="qsummary" aria-live="polite">
+          <p class="qsummary__title">Tu experiencia musical</p>
+          <div class="qsummary__row"><span class="qsummary__label">Evento</span><span class="qsummary__value" id="sumEvento">—</span></div>
+          <div class="qsummary__row"><span class="qsummary__label">Formato</span><span class="qsummary__value" id="sumFormato">—</span></div>
+          <div class="qsummary__row"><span class="qsummary__label">Músicos</span><span class="qsummary__value" id="sumMusicos">—</span></div>
+          <div class="qsummary__row"><span class="qsummary__label">Duración</span><span class="qsummary__value" id="sumDuracion">—</span></div>
+          <div class="qsummary__row"><span class="qsummary__label">Ubicación</span><span class="qsummary__value" id="sumUbicacion">—</span></div>
+          <div class="qsummary__row"><span class="qsummary__label">Sonido</span><span class="qsummary__value" id="sumSonido">—</span></div>
+          <div class="qsummary__row"><span class="qsummary__label">Repertorio</span><span class="qsummary__value" id="sumRepertorio">—</span></div>
+          <div class="qsummary__row"><span class="qsummary__label">Adicionales</span><span class="qsummary__value" id="sumAdicionales">—</span></div>
+          <div class="qsummary__row"><span class="qsummary__label">Por cotizar</span><span class="qsummary__value" id="sumPorCotizar">—</span></div>
+
+          <div class="qsummary__price">
+            <div class="qsummary__price-label">Precio artístico aproximado</div>
+            <div class="qsummary__price-value" id="sumPrecioArtistico">—</div>
+          </div>
+          <div class="qsummary__price">
+            <div class="qsummary__price-label">Total estimado</div>
+            <div class="qsummary__price-value" id="sumTotal">—</div>
+            <span class="qsummary__pill">Precio aproximado, no constituye una reserva.</span>
+          </div>
+          <p class="qsummary__note">Esta calculadora ofrece una estimación inicial. El precio final será confirmado por management de Azul Clarito según la fecha, ubicación, disponibilidad, formato musical y requerimientos técnicos del evento.</p>
+        </aside>
+
+        <!-- Contacto -->
+        <div class="quote__form qcontact">
+          <div class="qstep">
+            <h2 class="qstep__title qcontact__title" style="font-size:22px;">¡Hablemos de tu evento!</h2>
+            <div class="qgrid2">
+              <div class="qfield">
+                <label for="cNombre">Nombre *</label>
+                <input type="text" id="cNombre" required>
+              </div>
+              <div class="qfield">
+                <label for="cCorreo">Correo electrónico *</label>
+                <input type="email" id="cCorreo" required>
+              </div>
+              <div class="qfield">
+                <label for="cTelefono">Teléfono o WhatsApp *</label>
+                <input type="tel" id="cTelefono" required>
+              </div>
+              <div class="qfield">
+                <label for="cFecha">Fecha del evento (o aproximada) *</label>
+                <input type="date" id="cFecha" required>
+              </div>
+            </div>
+            <div class="qgrid2" style="margin-top:14px;">
+              <div class="qfield">
+                <label for="cEmpresa">Empresa o venue (opcional)</label>
+                <input type="text" id="cEmpresa">
+              </div>
+              <div class="qfield">
+                <label for="cInvitados">Número de invitados (opcional)</label>
+                <input type="number" id="cInvitados" min="0">
+              </div>
+            </div>
+            <div class="qfield">
+              <label for="cPresupuesto">Presupuesto aproximado (opcional)</label>
+              <input type="text" id="cPresupuesto" placeholder="Ej: ₡300.000 - ₡400.000">
+            </div>
+            <div class="qfield">
+              <label for="cComentarios">Comentarios adicionales (opcional)</label>
+              <textarea id="cComentarios"></textarea>
+            </div>
+
+            <p class="qerror" id="qerror">Completá al menos tu nombre, correo o teléfono, la fecha y el tipo de evento antes de continuar.</p>
+
+            <div class="qactions">
+              <button type="button" class="btn btn--whatsapp" id="btnWhatsapp">Continuar por WhatsApp</button>
+              <button type="button" class="btn btn--outline" id="btnEmail">Solicitar cotización personalizada</button>
+            </div>
+            <p class="qsent" id="qsent">¡Gracias por pensar en Azul Clarito para tu evento! Se abrió tu correo con la solicitud lista para enviar — al mandarla, la recibimos y revisamos la disponibilidad y los detalles para enviarte una propuesta personalizada.</p>
+            <p style="font-size:12px;color:rgba(22,50,79,0.55);margin-top:14px;">Este sitio no tiene servidor propio: "Solicitar cotización personalizada" abre tu app de correo con todo prellenado hacia mariamayaceleste@gmail.com — no queda guardado en ningún sistema hasta que vos lo envíes.</p>
+          </div>
+        </div>
+
+      </form>
     </div>
   </section>
 </main>
@@ -64,5 +541,271 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+(function() {
+  var RATES = {"formatos": [{"id": "pistas", "nombre": "Voz con pistas", "desc": "La voz de Azul Clarito acompañada de secuencias musicales.", "base60": 225000, "musicos": 1}, {"id": "guitarra", "nombre": "Voz y guitarra", "desc": "Una presentación acústica, íntima y cercana.", "base60": 200000, "musicos": 2}, {"id": "piano", "nombre": "Voz y piano", "desc": "Un formato elegante y melódico, ideal para ceremonias y ambientes íntimos.", "base60": 250000, "musicos": 2}, {"id": "guitarra_piano", "nombre": "Voz, guitarra y piano", "desc": "Un formato acústico más completo, con mayor riqueza armónica.", "base60": 300000, "musicos": 3}, {"id": "piano_percusion", "nombre": "Voz, piano y percusión", "desc": "Una experiencia acústica con ritmo y mayor energía.", "base60": 350000, "musicos": 3}, {"id": "guitarra_percusion", "nombre": "Voz, guitarra y percusión", "desc": "Un formato orgánico con raíces y energía caribeña.", "base60": 275000, "musicos": 3}, {"id": "guitarra_piano_percusion", "nombre": "Voz, guitarra, piano y percusión", "desc": "Un ensamble acústico ampliado.", "base60": 375000, "musicos": 4}, {"id": "guitarra_bajo_percusion", "nombre": "Voz, guitarra, bajo y percusión", "desc": "Un formato con base rítmica completa.", "base60": 425000, "musicos": 4}, {"id": "completo", "nombre": "Voz, guitarra, piano, bajo y percusión", "desc": "Un ensamble ampliado para eventos que requieren una experiencia musical más completa.", "base60": 500000, "musicos": 5}, {"id": "personalizado", "nombre": "Formato personalizado", "desc": "Contanos qué instrumentos o músicos te gustaría incluir.", "base60": null, "musicos": null}], "duraciones": [{"id": "15", "label": "Serenata de 15 minutos", "mult": 0.65, "serenata": true}, {"id": "30", "label": "Serenata de 30 minutos", "mult": 0.8, "serenata": true}, {"id": "45", "label": "Show de 45 minutos", "mult": 0.9}, {"id": "60", "label": "Show de 60 minutos", "mult": 1.0}, {"id": "90", "label": "Show de 90 minutos", "mult": 1.3}, {"id": "120", "label": "Show de 2 horas", "mult": 1.6}, {"id": "varias", "label": "Música en vivo durante varias horas"}, {"id": "paquete", "label": "Paquete personalizado"}], "provincias": {"Limón": ["Limón", "Pococí", "Siquirres", "Talamanca", "Matina", "Guácimo"], "San José": ["San José", "Escazú", "Desamparados", "Puriscal", "Tarrazú", "Aserrí", "Mora", "Goicoechea", "Santa Ana", "Alajuelita", "Vázquez de Coronado", "Acosta", "Tibás", "Moravia", "Montes de Oca", "Turrubares", "Dota", "Curridabat", "Pérez Zeledón", "León Cortés"], "Alajuela": ["Alajuela", "San Ramón", "Grecia", "San Mateo", "Atenas", "Naranjo", "Palmares", "Poás", "Orotina", "San Carlos", "Zarcero", "Sarchí", "Upala", "Los Chiles", "Guatuso", "Río Cuarto"], "Heredia": ["Heredia", "Barva", "Santo Domingo", "Santa Bárbara", "San Rafael", "San Isidro", "Belén", "Flores", "San Pablo", "Sarapiquí"], "Cartago": ["Cartago", "Paraíso", "La Unión", "Jiménez", "Turrialba", "Alvarado", "Oreamuno", "El Guarco"], "Guanacaste": ["Liberia", "Nicoya", "Santa Cruz", "Bagaces", "Carrillo", "Cañas", "Abangares", "Tilarán", "Nandayure", "La Cruz", "Hojancha"], "Puntarenas": ["Puntarenas", "Esparza", "Buenos Aires", "Montes de Oro", "Osa", "Quepos", "Golfito", "Coto Brus", "Parrita", "Corredores", "Garabito", "Monteverde", "Puerto Jiménez"]}, "zonaTransporteLocal": ["Limón", "San José"], "transporteLocal": 30000};
+
+  function money(n) {
+    return '₡' + Math.round(n).toLocaleString('es-CR');
+  }
+
+  // ---- Provincia -> Cantón ----
+  var provinciaSel = document.getElementById('provincia');
+  var cantonSel = document.getElementById('canton');
+  provinciaSel.addEventListener('change', function() {
+    var cantones = RATES.provincias[provinciaSel.value] || [];
+    cantonSel.innerHTML = '<option value="" selected disabled>Elegí un cantón</option>' +
+      cantones.map(function(c) { return '<option value="' + c + '">' + c + '</option>'; }).join('');
+    updateTransporteAviso();
+    updateSummary();
+  });
+
+  function updateTransporteAviso() {
+    var aviso = document.getElementById('transporteAviso');
+    var p = provinciaSel.value;
+    if (!p) { aviso.textContent = 'Seleccioná la provincia para ver si tu zona está dentro del transporte local.'; return; }
+    if (RATES.zonaTransporteLocal.indexOf(p) !== -1) {
+      aviso.textContent = 'Tu zona está dentro del transporte local (₡' + RATES.transporteLocal.toLocaleString('es-CR') + ' aprox.).';
+    } else {
+      aviso.textContent = 'El transporte y los viáticos se cotizan según la ubicación exacta.';
+    }
+  }
+
+  // ---- Mostrar/ocultar campos condicionales ----
+  function evalConditional(el) {
+    var cond = el.getAttribute('data-show-when');
+    if (!cond) return;
+    var parts = cond.split('=');
+    var field = parts[0], values = parts[1].split('|');
+    var current;
+    var target = document.getElementById(field);
+    if (target) {
+      current = target.type === 'checkbox' ? (target.checked ? 'on' : '') : target.value;
+    }
+    var show = values.indexOf(current) !== -1;
+    el.classList.toggle('is-shown', show);
+  }
+  function refreshConditionals() {
+    document.querySelectorAll('[data-conditional][data-show-when]').forEach(evalConditional);
+  }
+
+  document.getElementById('tipoEvento').addEventListener('change', refreshConditionals);
+  document.getElementById('instrumentoOtroCheck').addEventListener('change', refreshConditionals);
+  document.getElementById('repertorio').addEventListener('change', refreshConditionals);
+
+  var duracionSel = document.getElementById('duracion');
+  duracionSel.addEventListener('change', function() {
+    refreshConditionals();
+    var d = RATES.duraciones.find(function(x) { return x.id === duracionSel.value; });
+    document.getElementById('serenataAviso').classList.toggle('is-shown', !!(d && d.serenata));
+  });
+
+  // ---- Servicios (Ninguno / No estoy segura son excluyentes) ----
+  var servicioBoxes = document.querySelectorAll('input[name="servicio"]');
+  var servicioNinguno = document.getElementById('servicioNinguno');
+  var servicioNS = document.getElementById('servicioNS');
+  servicioBoxes.forEach(function(box) {
+    box.addEventListener('change', function() {
+      if (box === servicioNinguno || box === servicioNS) {
+        if (box.checked) {
+          servicioBoxes.forEach(function(b) { if (b !== box) b.checked = false; });
+        }
+      } else if (box.checked) {
+        servicioNinguno.checked = false;
+        servicioNS.checked = false;
+      }
+      updateSummary();
+    });
+  });
+
+  // ---- Sonido ----
+  var sonidoRadios = document.querySelectorAll('input[name="sonido"]');
+  var sonidoDetalleWrap = document.getElementById('sonidoDetalleWrap');
+  function updateSonido() {
+    var val = Array.from(sonidoRadios).find(function(r) { return r.checked; }).value;
+    var show = val === 'Cuenta con parte del equipo' || val === 'No cuenta con equipo de sonido';
+    sonidoDetalleWrap.classList.toggle('is-shown', show);
+  }
+  sonidoRadios.forEach(function(r) { r.addEventListener('change', function() { updateSonido(); updateSummary(); }); });
+
+  // ---- Formato: elegir tarjeta ----
+  var formatoRadios = document.querySelectorAll('input[name="formato"]');
+  formatoRadios.forEach(function(r) { r.addEventListener('change', function() { refreshConditionals(); updateSummary(); }); });
+
+  // ---- Cálculo de precio ----
+  function calcular() {
+    var formatoEl = Array.from(formatoRadios).find(function(r) { return r.checked; });
+    var duracionVal = duracionSel.value;
+    var d = RATES.duraciones.find(function(x) { return x.id === duracionVal; });
+
+    var precioArtistico = null; // null = "Cotización personalizada"
+    if (formatoEl && formatoEl.dataset.base && d && typeof d.mult === 'number') {
+      precioArtistico = Number(formatoEl.dataset.base) * d.mult;
+    }
+
+    var transporte = null; // null = desconocido/por cotizar
+    var provinciaVal = provinciaSel.value;
+    var enZonaLocal = provinciaVal && RATES.zonaTransporteLocal.indexOf(provinciaVal) !== -1;
+    if (enZonaLocal) transporte = RATES.transporteLocal;
+
+    var porCotizar = [];
+    if (!enZonaLocal) porCotizar.push('Transporte y viáticos');
+    porCotizar.push('Sonido y requerimientos técnicos');
+    var instrumentosChecked = Array.from(document.querySelectorAll('input[name="instrumento"]:checked'));
+    if (formatoEl && formatoEl.value === 'personalizado' && instrumentosChecked.length) {
+      porCotizar.push('Instrumentos adicionales del formato personalizado');
+    }
+    var repertorioVal = document.getElementById('repertorio').value;
+    if (repertorioVal !== 'Repertorio de Azul Clarito') {
+      porCotizar.push('Repertorio o arreglos especiales');
+    }
+    if (duracionVal === 'varias' || duracionVal === 'paquete') {
+      porCotizar.push('Modalidad especial (cotización personalizada)');
+    }
+
+    var total = null;
+    if (precioArtistico !== null) {
+      total = precioArtistico + (transporte || 0);
+    }
+
+    return { formatoEl: formatoEl, d: d, precioArtistico: precioArtistico, transporte: transporte, enZonaLocal: enZonaLocal, porCotizar: porCotizar, total: total };
+  }
+
+  // ---- Resumen dinámico ----
+  function updateSummary() {
+    var calc = calcular();
+    var tipoEvento = document.getElementById('tipoEvento').value || '—';
+    if (tipoEvento === 'Otro tipo de evento') {
+      var otro = document.getElementById('tipoEventoOtro').value;
+      if (otro) tipoEvento = otro;
+    }
+    document.getElementById('sumEvento').textContent = tipoEvento;
+    document.getElementById('sumFormato').textContent = calc.formatoEl ?
+      RATES.formatos.find(function(f) { return f.id === calc.formatoEl.value; }).nombre : '—';
+    document.getElementById('sumMusicos').textContent = calc.formatoEl && calc.formatoEl.dataset.musicos ?
+      calc.formatoEl.dataset.musicos : (calc.formatoEl && calc.formatoEl.value === 'personalizado' ? 'A definir' : '—');
+    document.getElementById('sumDuracion').textContent = calc.d ? calc.d.label : '—';
+
+    var provinciaVal = provinciaSel.value;
+    var cantonVal = cantonSel.value;
+    document.getElementById('sumUbicacion').textContent = (provinciaVal || cantonVal) ?
+      [cantonVal, provinciaVal].filter(Boolean).join(', ') : '—';
+
+    var sonidoVal = Array.from(sonidoRadios).find(function(r) { return r.checked; });
+    document.getElementById('sumSonido').textContent = sonidoVal ? sonidoVal.value : '—';
+    document.getElementById('sumRepertorio').textContent = document.getElementById('repertorio').value || '—';
+
+    var adicionales = [];
+    if (calc.enZonaLocal) adicionales.push('Transporte local (' + money(calc.transporte) + ')');
+    var servicios = Array.from(document.querySelectorAll('input[name="servicio"]:checked')).map(function(s) { return s.value; });
+    if (servicios.length) adicionales.push(servicios.join(', '));
+    document.getElementById('sumAdicionales').textContent = adicionales.length ? adicionales.join(' · ') : 'Ninguno';
+
+    document.getElementById('sumPorCotizar').textContent = calc.porCotizar.length ? calc.porCotizar.join(', ') : '—';
+
+    document.getElementById('sumPrecioArtistico').textContent = calc.precioArtistico !== null ? money(calc.precioArtistico) : 'Cotización personalizada';
+    document.getElementById('sumTotal').textContent = calc.total !== null ? (money(calc.total) + ' + por cotizar') : 'Cotización personalizada';
+  }
+
+  document.getElementById('tipoEventoOtro').addEventListener('input', updateSummary);
+  document.getElementById('repertorio').addEventListener('change', updateSummary);
+  document.querySelectorAll('input[name="instrumento"]').forEach(function(c) { c.addEventListener('change', updateSummary); });
+  duracionSel.addEventListener('change', updateSummary);
+
+  updateSonido();
+  refreshConditionals();
+  updateTransporteAviso();
+  updateSummary();
+
+  // ---- Construcción del mensaje ----
+  function buildResumenTexto() {
+    var calc = calcular();
+    var tipoEvento = document.getElementById('tipoEvento').value || '';
+    if (tipoEvento === 'Otro tipo de evento' && document.getElementById('tipoEventoOtro').value) {
+      tipoEvento = document.getElementById('tipoEventoOtro').value;
+    }
+    var formatoNombre = calc.formatoEl ? RATES.formatos.find(function(f) { return f.id === calc.formatoEl.value; }).nombre : 'Sin definir';
+    var instrumentos = Array.from(document.querySelectorAll('input[name="instrumento"]:checked')).map(function(c) { return c.value; });
+    if (document.getElementById('instrumentoOtroCheck').checked && document.getElementById('instrumentoOtroTexto').value) {
+      instrumentos.push(document.getElementById('instrumentoOtroTexto').value);
+    }
+    var provinciaVal = provinciaSel.value || '';
+    var cantonVal = cantonSel.value || '';
+    var distritoVal = document.getElementById('distrito').value || '';
+    var venueVal = document.getElementById('venue').value || '';
+    var ubicacion = [venueVal, distritoVal, cantonVal, provinciaVal].filter(Boolean).join(', ') || 'Sin especificar';
+    var sonidoVal = Array.from(sonidoRadios).find(function(r) { return r.checked; });
+    var repertorioVal = document.getElementById('repertorio').value;
+    var repertorioDetalle = document.getElementById('repertorioDetalle') ? document.getElementById('repertorioDetalle').value : '';
+
+    var precioTexto = calc.precioArtistico !== null ? money(calc.precioArtistico) : 'Cotización personalizada';
+    var totalTexto = calc.total !== null ? (money(calc.total) + ' + gastos por cotizar') : 'Cotización personalizada';
+    var adicionalesTexto = calc.enZonaLocal ? ('Transporte local ' + money(calc.transporte)) : 'Sin adicionales con tarifa aprobada';
+    var porCotizarTexto = calc.porCotizar.join(', ');
+
+    var nombre = document.getElementById('cNombre').value || 'Sin indicar';
+    var correo = document.getElementById('cCorreo').value || 'Sin indicar';
+    var telefono = document.getElementById('cTelefono').value || 'Sin indicar';
+    var fecha = document.getElementById('cFecha').value || 'Sin indicar';
+    var comentarios = document.getElementById('cComentarios').value || 'Ninguno';
+
+    var lineas = [
+      'Hola, Fabi. Me interesa contratar a Azul Clarito y quisiera solicitar una cotización.',
+      '',
+      'DATOS DEL EVENTO',
+      'Nombre: ' + nombre,
+      'Contacto: ' + telefono + ' / ' + correo,
+      'Tipo de evento: ' + (tipoEvento || 'Sin especificar'),
+      'Fecha: ' + fecha,
+      'Ubicación: ' + ubicacion,
+      '',
+      'PROPUESTA MUSICAL',
+      'Formato: ' + formatoNombre,
+      'Instrumentos: ' + (instrumentos.length ? instrumentos.join(', ') : 'Los del formato elegido'),
+      'Duración: ' + (calc.d ? calc.d.label : 'Sin especificar'),
+      'Número de músicos: ' + (calc.formatoEl && calc.formatoEl.dataset.musicos ? calc.formatoEl.dataset.musicos : 'A definir'),
+      'Repertorio especial: ' + repertorioVal + (repertorioDetalle ? (' — ' + repertorioDetalle) : ''),
+      'Sonido: ' + (sonidoVal ? sonidoVal.value : 'Sin especificar'),
+      '',
+      'COTIZACIÓN',
+      'Precio artístico aproximado: ' + precioTexto,
+      'Adicionales: ' + adicionalesTexto,
+      'Gastos por cotizar: ' + (porCotizarTexto || 'Ninguno pendiente'),
+      'Total estimado: ' + totalTexto,
+      '',
+      'Comentarios: ' + comentarios,
+      '',
+      'Me gustaría conocer la disponibilidad para esa fecha y recibir una cotización final.'
+    ];
+    return lineas.join('\n');
+  }
+
+  function validarContacto() {
+    var nombre = document.getElementById('cNombre').value.trim();
+    var correo = document.getElementById('cCorreo').value.trim();
+    var telefono = document.getElementById('cTelefono').value.trim();
+    var fecha = document.getElementById('cFecha').value;
+    var tipoEvento = document.getElementById('tipoEvento').value;
+    var ok = nombre && (correo || telefono) && fecha && tipoEvento;
+    document.getElementById('qerror').classList.toggle('is-shown', !ok);
+    return ok;
+  }
+
+  document.getElementById('btnWhatsapp').addEventListener('click', function() {
+    if (!validarContacto()) return;
+    var texto = buildResumenTexto();
+    window.open('https://wa.me/50685916892?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+  });
+
+  document.getElementById('btnEmail').addEventListener('click', function() {
+    if (!validarContacto()) return;
+    var texto = buildResumenTexto();
+    var asunto = 'Solicitud de cotización — Azul Clarito';
+    window.location.href = 'mailto:mariamayaceleste@gmail.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(texto);
+    document.getElementById('qsent').classList.add('is-shown');
+  });
+
+})();
+</script>
 </body>
 </html>
