@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memorias del Mar — Azul Clarito</title>
+<meta name="description" content="Explorá las canciones de Memorias del Mar, el próximo EP de Azul Clarito. Escuchá previews y descubrí cada canción.">
+<meta property="og:title" content="Memorias del Mar — Azul Clarito">
+<meta property="og:description" content="Explorá las canciones del EP y escuchá un preview de cada una.">
+<meta property="og:image" content="assets/azul-clarito-badge.jpg">
+<meta property="og:type" content="music.album">
+<link rel="icon" href="assets/azul-clarito-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ===== Memorias del Mar — estilos propios de ep.html ===== */
+.epx-hero {
+  position: relative; overflow: hidden; background: var(--navy); color: var(--paper);
+  padding: 96px 24px 72px; text-align: center;
+}
+.epx-hero__deco { position: absolute; top: 0; bottom: 0; height: 100%; width: 180px; object-fit: cover; opacity: 0.85; pointer-events: none; }
+.epx-hero__deco--left { left: 0; }
+.epx-hero__deco--right { right: 0; }
+@media (max-width: 1100px) { .epx-hero__deco { display: none; } }
+.epx-hero__inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+.epx-hero__artist { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sun); margin: 0 0 10px; }
+.epx-hero__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: clamp(38px, 7vw, 64px); margin: 0; }
+.epx-hero__lede { margin: 18px 0 0; color: rgba(252,254,255,0.85); font-size: 16px; line-height: 1.7; }
+.epx-hero__cta { margin-top: 30px; }
+
+.epx-section { padding: 72px 24px; max-width: 720px; margin: 0 auto; }
+.epx-section__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: clamp(26px, 3.4vw, 32px); color: var(--navy); margin: 0 0 6px; }
+.epx-section__note { font-size: 14px; color: rgba(22,50,79,0.6); margin: 0 0 24px; }
+
+.tracklist-x { list-style: none; margin: 0; padding: 0; }
+.track { display: flex; align-items: center; gap: 16px; padding: 18px 4px; border-top: 1px solid var(--line); }
+.track:last-child { border-bottom: 1px solid var(--line); }
+.track__num { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 15px; color: rgba(11,42,91,0.35); width: 26px; flex: none; }
+.track__main { flex: 1; min-width: 0; }
+.track__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.track__title { font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 18px; color: var(--navy); }
+.track__date { font-size: 12px; font-weight: 700; color: var(--aqua); white-space: nowrap; }
+.track__player { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+.track__play {
+  flex: none; width: 40px; height: 40px; border-radius: 999px; border: none; cursor: pointer;
+  background: var(--navy); color: var(--paper); display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s ease;
+}
+.track__play:hover { background: var(--teal, #0D3B3E); }
+.track__play[aria-pressed="true"] { background: var(--coral); }
+.track__progress { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.track__bar { flex: 1; height: 5px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.track__bar-fill { height: 100%; width: 0%; background: var(--aqua); border-radius: 999px; transition: width 0.1s linear; }
+.track__time { font-size: 12px; color: rgba(22,50,79,0.55); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.track__soon { font-size: 13px; font-style: italic; color: rgba(22,50,79,0.45); }
+.track__share {
+  flex: none; width: 36px; height: 36px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff;
+  color: var(--navy); cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.track__share:hover { border-color: var(--aqua); color: var(--aqua); }
+.track.is-highlighted { background: #F5FAFF; border-radius: 14px; }
+
+.track__error { font-size: 12px; color: #C0392B; margin-top: 6px; display: none; }
+.track__error.is-shown { display: block; }
+
+.epx-next {
+  display: none; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  background: #F5FAF9; border-radius: 16px; padding: 18px 22px; margin-top: 24px;
+}
+.epx-next.is-shown { display: flex; }
+.epx-next__text { font-family: 'Quicksand', sans-serif; font-weight: 600; color: var(--navy); }
+
+.epx-story { background: #F5FAF9; }
+.epx-story p { color: rgba(22,50,79,0.85); line-height: 1.8; max-width: 62ch; }
+
+.epx-share-ep { text-align: center; padding: 56px 24px 88px; }
+.epx-share-ep__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 22px; color: var(--navy); margin: 0 0 16px; }
+.epx-share-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.epx-toast {
+  position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px);
+  background: var(--navy); color: var(--paper); padding: 12px 20px; border-radius: 999px;
+  font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 50;
+}
+.epx-toast.is-shown { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .track__bar-fill { transition: none; }
+  .epx-toast { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="top">
+  <a class="nav__mark" href="index.html" aria-label="Azul Clarito, inicio">
+    <img src="assets/azul-clarito-portada.jpg" alt="Azul Clarito">
+  </a>
+  <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links" id="navLinks">
+    <a href="index.html#sobre-mi">Sobre mí</a>
+    <a href="libros.html">Libros</a>
+    <a href="index.html#ep">EP</a>
+    <a href="musica.html">Música</a>
+    <a href="video.html">Video</a>
+    <a href="redes.html">Redes</a>
+    <a href="booking.html">Booking</a>
+    <a class="nav__whatsapp" href="https://wa.me/50685916892?text=Hola%2C%20quiero%20agendar%20un%20show%20de%20Azul%20Clarito" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12.04 2.003c-5.52 0-9.99 4.47-9.99 9.99 0 1.76.46 3.48 1.34 4.99L2 22l5.13-1.35a9.96 9.96 0 0 0 4.91 1.29h.01c5.52 0 9.99-4.47 9.99-9.99 0-2.67-1.04-5.18-2.93-7.07a9.93 9.93 0 0 0-7.07-2.87zm0 18.16h-.01a8.3 8.3 0 0 1-4.24-1.16l-.3-.18-3.04.8.81-2.96-.2-.3a8.3 8.3 0 0 1-1.28-4.4c0-4.6 3.75-8.34 8.36-8.34 2.23 0 4.33.87 5.9 2.45a8.27 8.27 0 0 1 2.44 5.9c0 4.6-3.75 8.19-8.44 8.19z"/></svg>
+      Agendar
+    </a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="epx-hero" id="epx-top">
+    <img class="epx-hero__deco epx-hero__deco--left" src="assets/mar-1.png" alt="">
+    <img class="epx-hero__deco epx-hero__deco--right" src="assets/mar-2.png" alt="">
+    <div class="epx-hero__inner">
+      <p class="epx-hero__artist">Azul Clarito</p>
+      <h1 class="epx-hero__title">Memorias del Mar</h1>
+      <p class="epx-hero__lede">Un EP inspirado en el mar y la memoria de Limón. Explorá las canciones y escuchá un pedacito de cada una antes de que salgan todas.</p>
+      <div class="epx-hero__cta">
+        <a href="#epx-tracklist" class="btn btn--whatsapp" style="background:var(--paper);color:var(--navy);box-shadow:none;">Escuchar previews</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="epx-section" id="epx-tracklist">
+    <h2 class="epx-section__title">Las canciones</h2>
+    <p class="epx-section__note">Cada preview dura hasta 30 segundos. El EP completo se estrena por partes — seguí las fechas de cada lanzamiento.</p>
+    <ul class="tracklist-x" id="epxTrackList">
+
+        <li class="track" id="track-always-you" data-track-id="always-you">
+          <span class="track__num">01</span>
+          <div class="track__main">
+            <div class="track__head">
+              <span class="track__title">Always You</span>
+              <span class="track__date">11 nov · 11:11 am</span>
+            </div>
+            <div class="track__player">
+          <button class="track__play" data-play="always-you" aria-label="Reproducir preview de Always You">
+            <svg class="icon-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" hidden><path fill="currentColor" d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <div class="track__progress">
+            <div class="track__bar"><div class="track__bar-fill" data-fill="always-you"></div></div>
+            <div class="track__time"><span data-time="always-you">0:00</span> / 0:30</div>
+          </div>
+            </div>
+          </div>
+          <button class="track__share" data-share="always-you" aria-label="Compartir Always You">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 5 15c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 1 0 2.92-3.92z"/></svg>
+          </button>
+        </li>
+
+        <li class="track" id="track-chozita-de-mar" data-track-id="chozita-de-mar">
+          <span class="track__num">02</span>
+          <div class="track__main">
+            <div class="track__head">
+              <span class="track__title">Chozita de Mar</span>
+              <span class="track__date">23 dic · 12:23 md</span>
+            </div>
+            <div class="track__player">
+          <button class="track__play" data-play="chozita-de-mar" aria-label="Reproducir preview de Chozita de Mar">
+            <svg class="icon-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" hidden><path fill="currentColor" d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <div class="track__progress">
+            <div class="track__bar"><div class="track__bar-fill" data-fill="chozita-de-mar"></div></div>
+            <div class="track__time"><span data-time="chozita-de-mar">0:00</span> / 0:30</div>
+          </div>
+            </div>
+          </div>
+          <button class="track__share" data-share="chozita-de-mar" aria-label="Compartir Chozita de Mar">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 5 15c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 1 0 2.92-3.92z"/></svg>
+          </button>
+        </li>
+
+        <li class="track" id="track-bon-bon" data-track-id="bon-bon">
+          <span class="track__num">03</span>
+          <div class="track__main">
+            <div class="track__head">
+              <span class="track__title">Bon Bon</span>
+              <span class="track__date">6 abr · 4:06 pm</span>
+            </div>
+            <div class="track__player"><span class="track__soon">Preview próximamente</span>
+            </div>
+          </div>
+          <button class="track__share" data-share="bon-bon" aria-label="Compartir Bon Bon">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 5 15c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 1 0 2.92-3.92z"/></svg>
+          </button>
+        </li>
+
+        <li class="track" id="track-maria-celeste" data-track-id="maria-celeste">
+          <span class="track__num">04</span>
+          <div class="track__main">
+            <div class="track__head">
+              <span class="track__title">María Celeste</span>
+              <span class="track__date">28 jul · 7:28 pm</span>
+            </div>
+            <div class="track__player"><span class="track__soon">Preview próximamente</span>
+            </div>
+          </div>
+          <button class="track__share" data-share="maria-celeste" aria-label="Compartir María Celeste">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 5 15c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 1 0 2.92-3.92z"/></svg>
+          </button>
+        </li>
+    </ul>
+    <p class="track__error" id="epxAudioError">No se pudo cargar este preview. Intentá de nuevo en unos segundos.</p>
+
+    <div class="epx-next" id="epxNext">
+      <span class="epx-next__text" id="epxNextText">¿Seguimos explorando?</span>
+      <button class="btn btn--outline" id="epxNextBtn" style="padding:10px 20px;">Escuchar otra canción</button>
+    </div>
+  </section>
+
+  <section class="epx-section epx-story">
+    <h2 class="epx-section__title">Sobre el EP</h2>
+    <p>
+      Memorias del Mar nace del vínculo de Azul Clarito con el Caribe costarricense: el mar, el territorio
+      y los recuerdos que se quedan pegados a la piel de quienes crecieron cerca del agua. Es un proyecto
+      que se está construyendo canción por canción — cada lanzamiento se suma a esta memoria compartida.
+    </p>
+    <p style="font-size:13px;color:rgba(22,50,79,0.55);font-style:italic;">
+      Este texto es un resumen breve y puede ampliarse cuando management apruebe una descripción más
+      extensa del concepto del EP.
+    </p>
+  </section>
+
+  <section class="epx-share-ep">
+    <p class="epx-share-ep__title">¿Te gustó lo que escuchaste?</p>
+    <div class="epx-share-row">
+      <button class="btn btn--whatsapp" id="epxShareEp">Compartir Memorias del Mar</button>
+      <a class="btn btn--outline" href="index.html#ep">Volver al home</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <img src="assets/azul-clarito-icon.jpg" alt="">
+  <p>Azul Clarito · Limón, Costa Rica</p>
+</footer>
+
+<div class="epx-toast" id="epxToast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+<script>
+(function() {
+  var TRACKS = [{"id": "always-you", "numero": 1, "titulo": "Always You", "fecha": "11 nov", "hora": "11:11 am", "preview": "assets/previews/always-you.mp3", "disponible": true}, {"id": "chozita-de-mar", "numero": 2, "titulo": "Chozita de Mar", "fecha": "23 dic", "hora": "12:23 md", "preview": "assets/previews/chozita-de-mar.mp3", "disponible": true}, {"id": "bon-bon", "numero": 3, "titulo": "Bon Bon", "fecha": "6 abr", "hora": "4:06 pm", "preview": "assets/previews/bon-bon.mp3", "disponible": false}, {"id": "maria-celeste", "numero": 4, "titulo": "María Celeste", "fecha": "28 jul", "hora": "7:28 pm", "preview": "assets/previews/maria-celeste.mp3", "disponible": false}];
+  var MAX_SECONDS = 30;
+  var audio = new Audio();
+  audio.preload = 'none';
+  var currentId = null;
+
+  function trackById(id) { return TRACKS.find(function(t) { return t.id === id; }); }
+  function fmtTime(s) {
+    s = Math.max(0, Math.floor(s));
+    var m = Math.floor(s / 60), sec = s % 60;
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  function setPlayingUI(id, playing) {
+    var card = document.getElementById('track-' + id);
+    if (!card) return;
+    var btn = card.querySelector('.track__play');
+    if (!btn) return;
+    btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    btn.querySelector('.icon-play').hidden = playing;
+    btn.querySelector('.icon-pause').hidden = !playing;
+  }
+
+  function resetAllUI() {
+    TRACKS.forEach(function(t) {
+      setPlayingUI(t.id, false);
+      var fill = document.querySelector('[data-fill="' + t.id + '"]');
+      var time = document.querySelector('[data-time="' + t.id + '"]');
+      if (fill) fill.style.width = '0%';
+      if (time) time.textContent = '0:00';
+    });
+  }
+
+  function showError() {
+    document.getElementById('epxAudioError').classList.add('is-shown');
+    setTimeout(function() { document.getElementById('epxAudioError').classList.remove('is-shown'); }, 4000);
+  }
+
+  function play(id) {
+    var t = trackById(id);
+    if (!t || !t.disponible) return;
+    document.getElementById('epxAudioError').classList.remove('is-shown');
+
+    if (currentId === id && !audio.paused) {
+      audio.pause();
+      setPlayingUI(id, false);
+      return;
+    }
+    if (currentId && currentId !== id) {
+      audio.pause();
+      setPlayingUI(currentId, false);
+    }
+    currentId = id;
+    if (audio.src.indexOf(t.preview) === -1) {
+      audio.src = t.preview;
+      audio.currentTime = 0;
+    }
+    audio.play().then(function() {
+      setPlayingUI(id, true);
+    }).catch(function() {
+      showError();
+      setPlayingUI(id, false);
+    });
+  }
+
+  audio.addEventListener('timeupdate', function() {
+    if (!currentId) return;
+    var fill = document.querySelector('[data-fill="' + currentId + '"]');
+    var time = document.querySelector('[data-time="' + currentId + '"]');
+    var t = Math.min(audio.currentTime, MAX_SECONDS);
+    if (fill) fill.style.width = Math.min(100, (t / MAX_SECONDS) * 100) + '%';
+    if (time) time.textContent = fmtTime(t);
+    if (audio.currentTime >= MAX_SECONDS) {
+      audio.pause();
+      audio.currentTime = 0;
+      setPlayingUI(currentId, false);
+      showNextPrompt(currentId);
+    }
+  });
+  audio.addEventListener('ended', function() {
+    if (currentId) {
+      setPlayingUI(currentId, false);
+      showNextPrompt(currentId);
+    }
+  });
+  audio.addEventListener('error', function() {
+    if (currentId) setPlayingUI(currentId, false);
+    showError();
+  });
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden && currentId && !audio.paused) {
+      audio.pause();
+      setPlayingUI(currentId, false);
+    }
+  });
+
+  document.querySelectorAll('[data-play]').forEach(function(btn) {
+    btn.addEventListener('click', function() { play(btn.getAttribute('data-play')); });
+  });
+
+  // ---- "¿Seguimos explorando?" ----
+  function showNextPrompt(afterId) {
+    var disponibles = TRACKS.filter(function(t) { return t.disponible && t.id !== afterId; });
+    var next = document.getElementById('epxNext');
+    var nextBtn = document.getElementById('epxNextBtn');
+    var nextText = document.getElementById('epxNextText');
+    if (!disponibles.length) { next.classList.remove('is-shown'); return; }
+    var frases = ['¿Seguimos explorando?', 'Descubrí otra memoria.', 'Escuchá otro pedacito de Memorias del Mar.'];
+    nextText.textContent = frases[Math.floor(Math.random() * frases.length)];
+    var siguiente = disponibles[0];
+    nextBtn.onclick = function() {
+      document.getElementById('track-' + siguiente.id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      next.classList.remove('is-shown');
+    };
+    next.classList.add('is-shown');
+  }
+
+  // ---- Compartir por canción ----
+  function trackUrl(id) {
+    return window.location.origin + window.location.pathname + '?track=' + encodeURIComponent(id);
+  }
+  function toast(msg) {
+    var el = document.getElementById('epxToast');
+    el.textContent = msg;
+    el.classList.add('is-shown');
+    setTimeout(function() { el.classList.remove('is-shown'); }, 2600);
+  }
+  async function shareTrack(id) {
+    var t = trackById(id);
+    var url = trackUrl(id);
+    var texto = 'Escuchá este preview de ' + t.titulo + ', de Azul Clarito, parte de Memorias del Mar. Escuchalo acá: ' + url;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'Azul Clarito — ' + t.titulo, text: texto, url: url });
+      } catch (e) { /* cancelado por el usuario, no hacer nada */ }
+      return;
+    }
+    openShareFallback(texto, url);
+  }
+  function openShareFallback(texto, url) {
+    var wa = document.createElement('a');
+    wa.href = 'https://wa.me/?text=' + encodeURIComponent(texto);
+    wa.target = '_blank'; wa.rel = 'noopener';
+    if (confirm('Tu navegador no tiene el menú nativo de compartir.\n\nAceptar = abrir WhatsApp\nCancelar = copiar el enlace')) {
+      wa.click();
+    } else {
+      copyToClipboard(url);
+    }
+  }
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() { toast('Enlace copiado'); }).catch(function() { toast('No se pudo copiar el enlace'); });
+    } else {
+      toast('No se pudo copiar el enlace');
+    }
+  }
+  document.querySelectorAll('[data-share]').forEach(function(btn) {
+    btn.addEventListener('click', function() { shareTrack(btn.getAttribute('data-share')); });
+  });
+  document.getElementById('epxShareEp').addEventListener('click', function() {
+    var url = window.location.origin + window.location.pathname;
+    var texto = 'Escuchá Memorias del Mar, el próximo EP de Azul Clarito: ' + url;
+    if (navigator.share) {
+      navigator.share({ title: 'Azul Clarito — Memorias del Mar', text: texto, url: url }).catch(function() {});
+    } else {
+      openShareFallback(texto, url);
+    }
+  });
+
+  // ---- Deep link ?track=id (resalta, no reproduce) ----
+  var params = new URLSearchParams(window.location.search);
+  var sharedTrack = params.get('track');
+  if (sharedTrack && trackById(sharedTrack)) {
+    var card = document.getElementById('track-' + sharedTrack);
+    if (card) {
+      card.classList.add('is-highlighted');
+      window.addEventListener('load', function() {
+        setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>
