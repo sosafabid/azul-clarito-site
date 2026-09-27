@@ -26,6 +26,7 @@
   </button>
   <nav class="nav__links" id="navLinks">
     <a href="#sobre-mi">Sobre mí</a>
+    <a href="#libros">Libros</a>
     <a href="#ep">EP</a>
     <a href="#musica">Música</a>
     <a href="#video">Video</a>
@@ -65,21 +66,87 @@
     </div>
   </section>
 
-  <section class="section" id="sobre-mi">
+  <section class="about" id="sobre-mi">
+    <div class="about__inner">
+
+      <div class="about__media reveal" data-reveal>
+        <div class="about__photo-frame">
+          <img class="about__photo" src="assets/foto_sobremi.jpg" alt="María Celeste Amaya, Azul Clarito">
+        </div>
+        <img class="about__turtle" src="assets/azul-clarito-icon.jpg" alt="" aria-hidden="true">
+      </div>
+
+      <div class="about__content">
+        <p class="about__eyebrow reveal" data-reveal>
+          <svg class="about__hibiscus" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <g fill="#FF5B6B">
+              <ellipse cx="12" cy="6" rx="3.4" ry="4.6"/>
+              <ellipse cx="12" cy="6" rx="3.4" ry="4.6" transform="rotate(72 12 12)"/>
+              <ellipse cx="12" cy="6" rx="3.4" ry="4.6" transform="rotate(144 12 12)"/>
+              <ellipse cx="12" cy="6" rx="3.4" ry="4.6" transform="rotate(216 12 12)"/>
+              <ellipse cx="12" cy="6" rx="3.4" ry="4.6" transform="rotate(288 12 12)"/>
+            </g>
+            <circle cx="12" cy="12" r="2" fill="#FFC629"/>
+          </svg>
+          Sobre mí
+        </p>
+
+        <h2 class="about__title reveal" data-reveal>Entre ciencia, mar y canciones.</h2>
+
+        <div class="about__body reveal" data-reveal>
+          <p>
+            Soy María Celeste Amaya, Azul Clarito: cantautora, poeta y artista limonense. Crecí junto
+            al Caribe costarricense, donde aprendí a mirar la naturaleza desde dos lugares que para mí
+            nunca estuvieron separados: la curiosidad de entenderla y las ganas de cantarle.
+          </p>
+          <p>
+            Soy ingeniera química, docente de ciencias, instructora de yoga y autora de poesía, pero la
+            música es el lugar donde todas esas partes de mí se encuentran. Escribo sobre el mar, el
+            amor, la memoria, la gente, las contradicciones de la vida y las historias que nacen en el
+            Caribe.
+          </p>
+          <p>
+            Mi proyecto busca convertir esas experiencias en canciones que se sientan cercanas: a veces
+            alegres y bailables, otras íntimas, nostálgicas o contemplativas. Azul Clarito es mi manera
+            de hacer que todo lo que siento encuentre sonido.
+          </p>
+        </div>
+
+        <p class="about__signature reveal" data-reveal>
+          may my sounds sync your own <span class="about__heart">♡</span>
+        </p>
+
+        <ul class="about__attributes reveal" data-reveal>
+          <li><span aria-hidden="true">♪</span> Cantautora</li>
+          <li><span aria-hidden="true">✎</span> Poeta</li>
+          <li><span aria-hidden="true">⚗</span> Ingeniera química</li>
+          <li><span aria-hidden="true">☼</span> Caribe</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="about__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,100 L0,100 Z" fill="#BFEAFF"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section" id="libros">
     <div class="section__inner">
-      <h2 class="section__title">Sobre mí</h2>
-      <div class="rule rule--aqua"></div>
-      <div class="about__grid">
-        <p class="about__text">
-          Soy artista limonense, cantautora, poeta, docente e instructora de yoga. Mi música y mi
-          escritura nacen del vínculo con el mar, el territorio y las historias cotidianas de mi
-          comunidad.
-        </p>
-        <p class="about__text">
-          He publicado dos poemarios — <em>AMA'S</em> y <em>The Brief Chapter of You</em> — y me he
-          presentado en escenarios como Tortuguero, un concierto gratuito en Limón y un concierto del
-          Ministerio de Cultura y Juventud de Costa Rica.
-        </p>
+      <h2 class="section__title">Libros</h2>
+      <div class="rule rule--sun"></div>
+      <div class="books">
+        <a class="books__item" href="https://www.amazon.com/dp/B0DKQ8SC98?lv=shuf&language=es&channelId=500&plpRedirect=mhFallback&tag=69236102-20" target="_blank" rel="noopener">
+          <img class="books__cover" src="assets/libro-1.jpg" alt="Portada de Mi Littl Chickn">
+          <span class="books__title">Mi Littl Chickn</span>
+          <span class="books__action">Ver en Amazon</span>
+        </a>
+        <a class="books__item" href="https://www.amazon.com/-/es/Mar%C3%ADa-Celeste-Amaya-ebook/dp/B0DZ6C4FFZ" target="_blank" rel="noopener">
+          <img class="books__cover" src="assets/libro-2.jpg" alt="Portada de The Brief Chapter of You">
+          <span class="books__title">The Brief Chapter of You</span>
+          <span class="books__action">Ver en Amazon</span>
+        </a>
       </div>
     </div>
   </section>
