@@ -7,13 +7,30 @@ proyecto musical Azul Clarito.
 
 ```
 azul-clarito-site/
-├── index.html
-├── styles.css
-├── script.js
+├── index.html      Portada: hero + carrusel + Sobre mí + EP (scroll único)
+├── libros.html      Página propia
+├── musica.html       Página propia
+├── video.html        Página propia
+├── redes.html         Página propia
+├── booking.html        Página propia
+├── styles.css       Un solo archivo de estilos para todas las páginas
+├── script.js        Un solo archivo de JS para todas las páginas
 ├── assets/
-│   └── azul-clarito-mark.jpg
+│   ├── azul-clarito-icon.jpg      ícono / favicon (barra de navegación)
+│   ├── azul-clarito-portada.jpg   logo horizontal (barra de navegación)
+│   ├── azul-clarito-badge.jpg     insignia circular (vista previa al compartir)
+│   ├── foto_sobremi.jpg           foto de Celeste en "Sobre mí"
+│   ├── libro-1.jpg / libro-2.jpg  portadas de los libros
+│   ├── mar-1.png / mar-2.png      decoración lateral de la sección EP
+│   └── gallery/foto-1.jpg, foto-2.jpg, ...   fotos del carrusel de portada
 └── README.md
 ```
+
+**Navegación:** el menú solo mantiene el scroll dentro de la portada para
+"Sobre mí" y "EP" (anclas `#sobre-mi` y `#ep`); "Libros", "Música", "Video",
+"Redes" y "Booking" son ahora páginas propias — el menú te lleva ahí con un
+clic normal, no con scroll. El logo de la barra de navegación también apunta
+siempre de vuelta a `index.html`.
 
 ## 1. Abrir en Visual Studio Code
 
