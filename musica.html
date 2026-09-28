@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Música — Azul Clarito</title>
-<meta name="description" content="Escuchá a Azul Clarito en Apple Music, Spotify y YouTube.">
-<meta property="og:title" content="Azul Clarito — Música">
+<title>Música — Azul Clarito | Canciones, historias y catálogo</title>
+<meta name="description" content="Explorá el catálogo musical de Azul Clarito: nueve canciones entre el pop electrónico, el afrobeat tropical, las baladas alternativas y el rock, con las historias detrás de cada una.">
+<meta property="og:title" content="Música — Azul Clarito">
+<meta property="og:description" content="Nueve canciones, nueve historias. Conocé la música de Azul Clarito y encontrá la que conecte con vos.">
 <meta property="og:image" content="assets/azul-clarito-badge.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/azul-clarito-icon.jpg">
@@ -13,6 +14,116 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Azul Clarito",
+  "genre": ["Electrónica", "Balada", "Alternativa", "Afrobeat tropical"],
+  "sameAs": [
+    "https://open.spotify.com/intl-es/artist/1brdje9qLllYUDumAR4Vm9",
+    "https://music.apple.com/es/artist/azul-clarito/1829638982",
+    "https://www.youtube.com/@mariacelesteamaya",
+    "https://www.instagram.com/mariamayaceleste"
+  ]
+}
+</script>
+<style>
+/* ===== Música — estilos propios de musica.html ===== */
+.mus-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero */
+.mus-hero { position: relative; overflow: hidden; padding: 92px 0 150px;
+  background: radial-gradient(circle at 15% 0%, #BFEAFF 0%, transparent 50%), radial-gradient(circle at 90% 20%, #F6D9A8 0%, transparent 42%), var(--paper); }
+.mus-hero__inner { max-width: 760px; }
+.eq { display: inline-flex; align-items: flex-end; gap: 4px; height: 22px; margin-bottom: 14px; }
+.eq span { width: 4px; border-radius: 3px; background: var(--aqua); animation: eq 1.2s ease-in-out infinite; }
+.eq span:nth-child(1) { height: 40%; animation-delay: 0s; }
+.eq span:nth-child(2) { height: 90%; animation-delay: .2s; background: var(--coral); }
+.eq span:nth-child(3) { height: 60%; animation-delay: .4s; background: var(--sun); }
+.eq span:nth-child(4) { height: 100%; animation-delay: .1s; }
+.eq span:nth-child(5) { height: 50%; animation-delay: .3s; background: var(--pink); }
+@keyframes eq { 0%,100% { transform: scaleY(.45); } 50% { transform: scaleY(1); } }
+.eq span { transform-origin: bottom; }
+.mus-hero h1 { font-size: clamp(44px, 8vw, 84px); line-height: 1; margin: 0 0 22px; }
+.mus-hero p.lede { font-size: 18px; line-height: 1.75; color: rgba(22,50,79,.85); max-width: 60ch; margin: 0 0 16px; }
+.mus-quote { margin: 30px 0 0; padding: 4px 0 4px 22px; border-left: 4px solid var(--coral); font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: clamp(20px, 2.6vw, 26px); line-height: 1.4; color: var(--navy); max-width: 32ch; }
+.mus-waves { position: absolute; left: 0; right: 0; bottom: 0; height: 110px; overflow: hidden; pointer-events: none; }
+.mus-waves svg { position: absolute; bottom: 0; left: 0; width: 200%; height: 100%; }
+.mus-waves .w1 { animation: drift 22s linear infinite; }
+.mus-waves .w2 { animation: drift 34s linear infinite reverse; opacity: .8; }
+@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Cubierta / portadas */
+.cover { position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 18px; overflow: hidden;
+  background: linear-gradient(145deg, var(--c1), var(--c2)); box-shadow: 0 14px 34px rgba(11,42,91,.18); isolation: isolate; }
+.cover__num { position: absolute; top: 12px; left: 16px; font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 38px; color: rgba(255,255,255,.85); text-shadow: 0 2px 10px rgba(11,42,91,.25); z-index: 1; }
+.cover__wave { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 55%; }
+.cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; }
+.cover--sm { width: 92px; flex: none; border-radius: 14px; box-shadow: 0 8px 20px rgba(11,42,91,.16); }
+.cover--sm .cover__num { font-size: 22px; top: 8px; left: 10px; }
+
+.chip { display: inline-block; font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .04em; color: var(--navy); background: rgba(0,199,242,.14); padding: 5px 12px; border-radius: 999px; }
+
+/* Destacadas */
+.mus-featured { padding: 20px 0 84px; }
+.mus-h2 { font-size: clamp(28px, 4vw, 40px); margin: 0 0 8px; }
+.mus-sub { color: rgba(22,50,79,.65); margin: 0 0 34px; font-size: 15px; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 28px; }
+.feat { display: flex; flex-direction: column; gap: 20px; background: #fff; border: 1px solid var(--line); border-radius: 26px; padding: 18px 18px 26px; transition: opacity .7s ease, transform .5s ease, box-shadow .25s ease; }
+.feat:hover { transform: translateY(-6px); box-shadow: 0 26px 50px rgba(11,42,91,.14); }
+.feat .cover { transition: transform .4s ease; }
+.feat:hover .cover { transform: scale(1.02) rotate(-.6deg); }
+.feat__body { display: flex; flex-direction: column; gap: 12px; padding: 0 6px; flex: 1; }
+.feat__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.15; color: var(--navy); margin: 4px 0 0; }
+.feat__text { font-size: 15px; line-height: 1.75; color: rgba(22,50,79,.85); margin: 0 0 8px; }
+.feat .btn--listen { margin-top: auto; align-self: flex-start; }
+.btn--listen { background: var(--navy); color: var(--paper); padding: 13px 26px; }
+.btn--listen:hover { background: var(--teal, #0D3B3E); transform: translateY(-1px); }
+
+/* Catálogo */
+.mus-catalog { background: linear-gradient(180deg, #F2FAFB 0%, #FFF8EC 100%); padding: 84px 0; border-top: 1px solid var(--line); }
+.song-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; align-items: start; }
+.song { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 18px; transition: opacity .7s ease, box-shadow .25s ease, transform .4s ease; }
+.song:hover { box-shadow: 0 16px 36px rgba(11,42,91,.12); transform: translateY(-3px); }
+.song__top { display: flex; gap: 16px; align-items: center; }
+.song__meta { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; }
+.song__num { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .12em; color: var(--aqua); }
+.song__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 19px; line-height: 1.2; color: var(--navy); margin: 0; overflow-wrap: anywhere; }
+.song__actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+.story-toggle { display: inline-flex; align-items: center; gap: 6px; font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 14px; color: var(--navy); background: #F2FAFB; border: 1.5px solid var(--line); border-radius: 999px; padding: 10px 16px; min-height: 44px; cursor: pointer; transition: background .15s ease, border-color .15s ease; }
+.story-toggle:hover { border-color: var(--aqua); background: #E6F8FD; }
+.story-toggle svg { transition: transform .3s ease; }
+.story-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.story-toggle:focus-visible, .listen-link:focus-visible, .btn--listen:focus-visible { outline: 3px solid var(--aqua); outline-offset: 3px; }
+.listen-link { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 14px; color: var(--coral); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; min-height: 44px; display: inline-flex; align-items: center; transition: text-decoration-color .15s ease; }
+.listen-link:hover { text-decoration-color: var(--coral); }
+.story { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+.story.is-open { grid-template-rows: 1fr; }
+.story__inner { overflow: hidden; visibility: hidden; transition: visibility 0s linear .35s; }
+.story.is-open .story__inner { visibility: visible; transition-delay: 0s; }
+.story__inner p { margin: 16px 0 2px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 15px; line-height: 1.75; color: rgba(22,50,79,.88); }
+
+/* Plataformas */
+.mus-platforms { position: relative; background: var(--navy); color: var(--paper); padding: 84px 0 92px; overflow: hidden; }
+.mus-platforms::before { content: ''; position: absolute; width: 520px; height: 520px; right: -160px; top: -200px; border-radius: 50%; background: radial-gradient(circle, rgba(0,199,242,.28), transparent 70%); pointer-events: none; }
+.mus-platforms .mus-wrap { position: relative; max-width: 760px; }
+.mus-platforms .mus-h2 { color: var(--paper); }
+.mus-platforms .mus-sub { color: rgba(252,254,255,.75); }
+.mus-platforms .tracklist__row { border-color: rgba(255,255,255,.18); }
+.mus-platforms .tracklist__name { color: var(--paper); }
+.mus-platforms .tracklist__action { color: var(--sun); }
+.mus-platforms .tracklist__row a:hover .tracklist__action { border-color: var(--sun); }
+.mus-platforms .spotify-embed { margin-top: 28px; }
+
+@media (max-width: 700px) {
+  .mus-hero { padding: 60px 0 120px; }
+  .mus-catalog, .mus-platforms { padding: 60px 0; }
+  .mus-featured { padding-bottom: 60px; }
+  .song-grid { grid-template-columns: 1fr; }
+  .mus-waves { height: 80px; }
+}
+</style>
 </head>
 <body>
 
@@ -26,7 +137,7 @@
   <nav class="nav__links" id="navLinks">
     <a href="index.html#sobre-mi">Sobre mí</a>
     <a href="libros.html">Libros</a>
-    <a href="index.html#ep">EP</a>
+    <a href="ep.html">EP</a>
     <a href="musica.html">Música</a>
     <a href="video.html">Video</a>
     <a href="redes.html">Redes</a>
@@ -39,10 +150,256 @@
 </header>
 
 <main>
-  <section class="section section--page" id="musica">
-    <div class="section__inner">
-      <h1 class="section__title">Música</h1>
-      <div class="rule rule--coral"></div>
+
+  <!-- 1. Introducción -->
+  <section class="mus-hero" id="introduccion">
+    <div class="mus-wrap">
+      <div class="mus-hero__inner">
+        <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        <h1 data-reveal>Música</h1>
+        <p class="lede" data-reveal>La música de Azul Clarito es un encuentro entre sonidos, raíces y experiencias personales. Desde el pop electrónico y el afrobeat tropical hasta las baladas alternativas y el rock, sus canciones recorren distintas formas de sentir, recordar y conectar.</p>
+        <p class="lede" data-reveal>Inspirada por sus raíces caribeñas y por las experiencias que han marcado su vida, Azul Clarito transforma emociones y recuerdos en canciones que invitan a descubrir su universo musical.</p>
+        <blockquote class="mus-quote" data-reveal>“Explorá sus canciones, conocé las historias detrás de ellas y encontrá la que conecte con vos.”</blockquote>
+      </div>
+    </div>
+    <div class="mus-waves" aria-hidden="true">
+      <svg class="w2" viewBox="0 0 2880 120" preserveAspectRatio="none"><path d="M0,70 C240,20 480,110 720,70 C960,30 1200,110 1440,70 C1680,20 1920,110 2160,70 C2400,30 2640,110 2880,70 L2880,120 L0,120 Z" fill="#BFEAFF" fill-opacity=".55"/></svg>
+      <svg class="w1" viewBox="0 0 2880 120" preserveAspectRatio="none"><path d="M0,80 C240,110 480,30 720,80 C960,120 1200,40 1440,80 C1680,110 1920,30 2160,80 C2400,120 2640,40 2880,80 L2880,120 L0,120 Z" fill="#F2FAFB"/></svg>
+    </div>
+  </section>
+
+  <!-- 2. Canciones destacadas -->
+  <section class="mus-featured" id="destacadas">
+    <div class="mus-wrap">
+      <h2 class="mus-h2" data-reveal>Canciones destacadas</h2>
+      <p class="mus-sub" data-reveal>Tres puertas de entrada al universo de Azul Clarito.</p>
+      <div class="feat-grid">
+      <article class="feat" data-reveal style="transition-delay:0ms">
+        <div class="cover cover--lg" style="--c1:#0B2A5B;--c2:#00C7F2"><span class="cover__num" aria-hidden="true">01</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/unavailable.jpg" alt="Portada de Unavailable" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+        <div class="feat__body">
+          <span class="chip">Electrónica</span>
+          <h3 class="feat__title">Unavailable</h3>
+          <p class="feat__text">Una canción electrónica sobre la vulnerabilidad de enamorarse de alguien que no está emocionalmente disponible. Entre el deseo de acercarse y el miedo a salir herida, Azul Clarito expresa una petición íntima: me gustás mucho, pero, por favor, no me lastimés.</p>
+          <a class="btn btn--listen" href="#plataformas" data-listen="unavailable">Escuchar</a>
+        </div>
+      </article>
+      <article class="feat" data-reveal style="transition-delay:90ms">
+        <div class="cover cover--lg" style="--c1:#00C7F2;--c2:#FF9DB8"><span class="cover__num" aria-hidden="true">02</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/mermaids-fairies.jpg" alt="Portada de Mermaids &amp; Fairies" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+        <div class="feat__body">
+          <span class="chip">Balada</span>
+          <h3 class="feat__title">Mermaids &amp; Fairies</h3>
+          <p class="feat__text">Una invitación a reencontrarse con su mamá en un sueño. Como el río que inevitablemente encuentra el mar, la canción imagina un encuentro destinado a suceder y la alegría de volver a estar juntas, libres y felices, como un niño corriendo.</p>
+          <a class="btn btn--listen" href="#plataformas" data-listen="mermaids-fairies">Escuchar</a>
+        </div>
+      </article>
+      <article class="feat" data-reveal style="transition-delay:180ms">
+        <div class="cover cover--lg" style="--c1:#0B2A5B;--c2:#FF5B6B"><span class="cover__num" aria-hidden="true">04</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/streets-of-gold.jpg" alt="Portada de Streets of Gold" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+        <div class="feat__body">
+          <span class="chip">Balada rock</span>
+          <h3 class="feat__title">Streets of Gold</h3>
+          <p class="feat__text">Escrita como una carta a su mamá en el cielo, esta balada rock está llena de preguntas: cómo está, cómo es Dios, cómo es la vida allá y si todavía la recuerda y la extraña. Una conversación que busca mantener vivo el vínculo más allá de la muerte.</p>
+          <a class="btn btn--listen" href="#plataformas" data-listen="streets-of-gold">Escuchar</a>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Catálogo completo -->
+  <section class="mus-catalog" id="catalogo">
+    <div class="mus-wrap">
+      <h2 class="mus-h2" data-reveal>Todas las canciones</h2>
+      <p class="mus-sub" data-reveal>Tocá “Conocer la historia” para leer lo que hay detrás de cada canción.</p>
+      <div class="song-grid">
+      <article class="song" id="song-unavailable" data-reveal style="transition-delay:0ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#0B2A5B;--c2:#00C7F2"><span class="cover__num" aria-hidden="true">01</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/unavailable.jpg" alt="Portada de Unavailable" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">01</span>
+            <h3 class="song__title" id="title-unavailable">Unavailable</h3>
+            <span class="chip">Electrónica</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-unavailable" data-story="unavailable">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="unavailable">Escuchar</a>
+        </div>
+        <div class="story" id="story-unavailable" role="region" aria-labelledby="title-unavailable">
+          <div class="story__inner"><p>Una canción electrónica sobre la vulnerabilidad de enamorarse de alguien que no está emocionalmente disponible. Entre el deseo de acercarse y el miedo a salir herida, Azul Clarito expresa una petición íntima: me gustás mucho, pero, por favor, no me lastimés.</p></div>
+        </div>
+      </article>
+      <article class="song" id="song-mermaids-fairies" data-reveal style="transition-delay:70ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#00C7F2;--c2:#FF9DB8"><span class="cover__num" aria-hidden="true">02</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/mermaids-fairies.jpg" alt="Portada de Mermaids &amp; Fairies" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">02</span>
+            <h3 class="song__title" id="title-mermaids-fairies">Mermaids &amp; Fairies</h3>
+            <span class="chip">Balada</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-mermaids-fairies" data-story="mermaids-fairies">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="mermaids-fairies">Escuchar</a>
+        </div>
+        <div class="story" id="story-mermaids-fairies" role="region" aria-labelledby="title-mermaids-fairies">
+          <div class="story__inner"><p>Una invitación a reencontrarse con su mamá en un sueño. Como el río que inevitablemente encuentra el mar, la canción imagina un encuentro destinado a suceder y la alegría de volver a estar juntas, libres y felices, como un niño corriendo.</p></div>
+        </div>
+      </article>
+      <article class="song" id="song-trade" data-reveal style="transition-delay:140ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#FFC629;--c2:#F6D9A8"><span class="cover__num" aria-hidden="true">03</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/trade.jpg" alt="Portada de TRADE" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">03</span>
+            <h3 class="song__title" id="title-trade">TRADE</h3>
+            <span class="chip">Alternativa</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-trade" data-story="trade">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="trade">Escuchar</a>
+        </div>
+        <div class="story" id="story-trade" role="region" aria-labelledby="title-trade">
+          <div class="story__inner"><p>Entre sonidos de campanitas y una atmósfera alternativa, Azul Clarito le suplica a Dios cinco segundos más con su mamá. Una canción que imagina entregar el alma, el cuerpo y todo lo material a cambio de un instante de reencuentro.</p></div>
+        </div>
+      </article>
+      <article class="song" id="song-streets-of-gold" data-reveal style="transition-delay:0ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#0B2A5B;--c2:#FF5B6B"><span class="cover__num" aria-hidden="true">04</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/streets-of-gold.jpg" alt="Portada de Streets of Gold" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">04</span>
+            <h3 class="song__title" id="title-streets-of-gold">Streets of Gold</h3>
+            <span class="chip">Balada rock</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-streets-of-gold" data-story="streets-of-gold">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="streets-of-gold">Escuchar</a>
+        </div>
+        <div class="story" id="story-streets-of-gold" role="region" aria-labelledby="title-streets-of-gold">
+          <div class="story__inner"><p>Escrita como una carta a su mamá en el cielo, esta balada rock está llena de preguntas: cómo está, cómo es Dios, cómo es la vida allá y si todavía la recuerda y la extraña. Una conversación que busca mantener vivo el vínculo más allá de la muerte.</p></div>
+        </div>
+      </article>
+      <article class="song" id="song-zuenozzz" data-reveal style="transition-delay:70ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#BFEAFF;--c2:#00C7F2"><span class="cover__num" aria-hidden="true">05</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/zuenozzz.jpg" alt="Portada de ZuenozZz (Sueños)" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">05</span>
+            <h3 class="song__title" id="title-zuenozzz">ZuenozZz (Sueños)</h3>
+            <span class="chip">Canción alternativa</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-zuenozzz" data-story="zuenozzz">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="zuenozzz">Escuchar</a>
+        </div>
+        <div class="story" id="story-zuenozzz" role="region" aria-labelledby="title-zuenozzz">
+          <div class="story__inner"><p>¿Qué soñamos cuando extrañamos a alguien que ya no está? Para Azul Clarito, el sueño es volver a prepararle el desayuno a su mamá, salir a pasear juntas y compartir los pequeños momentos de la vida. Una canción sobre cómo la ausencia transforma lo cotidiano en un anhelo profundo.</p></div>
+        </div>
+      </article>
+      <article class="song" id="song-we-nuh-walk" data-reveal style="transition-delay:140ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#FFC629;--c2:#FF5B6B"><span class="cover__num" aria-hidden="true">06</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/we-nuh-walk.jpg" alt="Portada de We Nuh Walk, We Dance" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">06</span>
+            <h3 class="song__title" id="title-we-nuh-walk">We Nuh Walk, We Dance</h3>
+            <span class="chip">Afrobeat tropical</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-we-nuh-walk" data-story="we-nuh-walk">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="we-nuh-walk">Escuchar</a>
+        </div>
+        <div class="story" id="story-we-nuh-walk" role="region" aria-labelledby="title-we-nuh-walk">
+          <div class="story__inner"><p>Creada en 2022 como parte de un proyecto universitario durante sus estudios de producción musical, esta canción es una celebración de Limón y su identidad. Con la premisa ‘Limón no se camina, se baila’, incorpora un fragmento del himno de Limón y rinde homenaje al ritmo de su tierra.</p></div>
+        </div>
+      </article>
+      <article class="song" id="song-eme-ama" data-reveal style="transition-delay:0ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#FF9DB8;--c2:#F6D9A8"><span class="cover__num" aria-hidden="true">07</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/eme-ama.jpg" alt="Portada de EMÉ - AMÁ" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">07</span>
+            <h3 class="song__title" id="title-eme-ama">EMÉ - AMÁ</h3>
+            <span class="chip">Canción íntima</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-eme-ama" data-story="eme-ama">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="eme-ama">Escuchar</a>
+        </div>
+        <div class="story" id="story-eme-ama" role="region" aria-labelledby="title-eme-ama">
+          <div class="story__inner"><p>Nacida de los últimos acordes que Azul Clarito tocó al piano para su mamá y del último mensaje que recibió de ella, esta canción transforma una despedida en una guía para seguir viviendo. En ella resuena una enseñanza materna: aprender a amarse a sí misma incluso más de lo que su mamá la había amado.</p></div>
+        </div>
+      </article>
+      <article class="song" id="song-with-me-too" data-reveal style="transition-delay:70ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#BFEAFF;--c2:#0B2A5B"><span class="cover__num" aria-hidden="true">08</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/with-me-too.jpg" alt="Portada de with me too" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">08</span>
+            <h3 class="song__title" id="title-with-me-too">with me too</h3>
+            <span class="chip">Balada</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-with-me-too" data-story="with-me-too">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="with-me-too">Escuchar</a>
+        </div>
+        <div class="story" id="story-with-me-too" role="region" aria-labelledby="title-with-me-too">
+          <div class="story__inner"><p>Al mirar las fotografías de su mamá en casa, los recuerdos hacen que su ausencia se sienta más presente que nunca. Una balada íntima sobre extrañarla, desear tenerla cerca y anhelar compartir con ella todo lo que todavía queda por vivir.</p></div>
+        </div>
+      </article>
+      <article class="song" id="song-democlarito" data-reveal style="transition-delay:140ms">
+        <div class="song__top">
+          <div class="cover cover--sm" style="--c1:#00C7F2;--c2:#0B2A5B"><span class="cover__num" aria-hidden="true">09</span><svg class="cover__wave" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C25,10 50,70 75,40 S125,10 150,40 S190,60 200,40 L200,80 L0,80 Z" fill="rgba(255,255,255,.22)"/><path d="M0,55 C30,30 55,80 85,55 S140,30 170,55 S195,70 200,55 L200,80 L0,80 Z" fill="rgba(255,255,255,.18)"/></svg><img src="assets/portadas/democlarito.jpg" alt="Portada de democlarito" loading="lazy" width="640" height="640" onerror="this.remove()"></div>
+          <div class="song__meta">
+            <span class="song__num">09</span>
+            <h3 class="song__title" id="title-democlarito">democlarito</h3>
+            <span class="chip">Experimental</span>
+          </div>
+        </div>
+        <div class="song__actions">
+          <button type="button" class="story-toggle" aria-expanded="false" aria-controls="story-democlarito" data-story="democlarito">
+            <span class="story-toggle__label">Conocer la historia</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <a class="listen-link" href="#plataformas" data-listen="democlarito">Escuchar</a>
+        </div>
+        <div class="story" id="story-democlarito" role="region" aria-labelledby="title-democlarito">
+          <div class="story__inner"><p>La primera exploración profesional de Azul Clarito en Ableton comenzó como un espacio para experimentar con sonidos y posibilidades musicales. El demo terminó convirtiéndose en una colaboración cuando otra cantautora incorporó su voz, dando lugar a una pieza de carácter muy alternativo.</p></div>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Plataformas y reproductor -->
+  <section class="mus-platforms" id="plataformas">
+    <div class="mus-wrap">
+      <h2 class="mus-h2" data-reveal>Escuchá a Azul Clarito</h2>
+      <p class="mus-sub" data-reveal>Encontrá su música en tus plataformas favoritas y seguí descubriendo nuevas canciones.</p>
       <ul class="tracklist">
         <li class="tracklist__row">
           <a href="https://music.apple.com/es/artist/azul-clarito/1829638982">
@@ -74,13 +431,57 @@
       </div>
     </div>
   </section>
+
 </main>
 
 <footer class="footer">
   <img src="assets/azul-clarito-icon.jpg" alt="">
-  <p>Desarrollado por: Integra Sinergia · Limón, Costa Rica</p>
+  <p>Azul Clarito · Limón, Costa Rica</p>
 </footer>
 
 <script src="script.js"></script>
+<script>
+(function () {
+  /* ============================================================
+     CONFIGURACIÓN DE ENLACES "ESCUCHAR"
+     Pegá acá el enlace exacto de cada canción en Spotify
+     (en Spotify: ⋯ → Compartir → Copiar enlace de la canción).
+     Mientras una canción esté en null, su botón "Escuchar" lleva
+     a la sección de plataformas de esta misma página (no a un
+     enlace incorrecto). Solo se publican enlaces verificados.
+     ============================================================ */
+  var SPOTIFY_LINKS = {
+    'unavailable':      null,
+    'mermaids-fairies': 'https://open.spotify.com/track/0H4lC6Ky3eWfA3dwSF4IXC', // verificado
+    'trade':            null,
+    'streets-of-gold':  null,
+    'zuenozzz':         null,
+    'we-nuh-walk':      null,
+    'eme-ama':          null,
+    'with-me-too':      null,
+    'democlarito':      null
+  };
+
+  document.querySelectorAll('[data-listen]').forEach(function (a) {
+    var url = SPOTIFY_LINKS[a.getAttribute('data-listen')];
+    if (!url) return;
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = 'Escuchar en Spotify';
+  });
+
+  /* Historias desplegables (acordeón accesible) */
+  document.querySelectorAll('[data-story]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var panel = document.getElementById('story-' + btn.getAttribute('data-story'));
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.classList.toggle('is-open', !open);
+      btn.querySelector('.story-toggle__label').textContent = open ? 'Conocer la historia' : 'Cerrar historia';
+    });
+  });
+})();
+</script>
 </body>
 </html>
