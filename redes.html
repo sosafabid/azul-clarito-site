@@ -16,6 +16,47 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* ===== Redes — estilos propios de redes.html ===== */
+.rd-hero { padding: 88px 24px 8px; max-width: 720px; margin: 0 auto; text-align: left; }
+.rd-hero p.lede { color: rgba(22,50,79,.75); font-size: 16px; margin: 14px 0 0; max-width: 54ch; }
+
+.rd-grid {
+  max-width: 1040px; margin: 0 auto; padding: 36px 24px 20px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px;
+}
+.rd-card {
+  position: relative; display: flex; flex-direction: column; justify-content: space-between;
+  gap: 28px; padding: 26px 24px; border-radius: 24px; min-height: 180px;
+  color: #fff; text-decoration: none; overflow: hidden;
+  box-shadow: 0 16px 36px rgba(11,42,91,.16);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.rd-card:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 24px 46px rgba(11,42,91,.24); }
+.rd-card:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+.rd-card__icon { width: 34px; height: 34px; opacity: .95; }
+.rd-card__bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rd-card__name { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 21px; }
+.rd-card__arrow { width: 30px; height: 30px; border-radius: 999px; background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; transition: background .2s ease, transform .2s ease; flex: none; }
+.rd-card:hover .rd-card__arrow { background: rgba(255,255,255,.4); transform: translate(2px,-2px); }
+.rd-card__handle { position: absolute; top: 20px; right: 22px; font-size: 12px; font-weight: 600; opacity: .75; }
+
+.rd-ig { background: linear-gradient(135deg, #5B4CD6 0%, #C62E8C 45%, #F3763B 100%); }
+.rd-tt { background: linear-gradient(135deg, #0B2A5B 0%, #12121A 60%); }
+.rd-th { background: linear-gradient(135deg, #16324F 0%, #0B2A5B 100%); }
+.rd-yt { background: linear-gradient(135deg, #E1283F 0%, #8A1420 100%); }
+
+.rd-featured { max-width: 720px; margin: 56px auto 0; padding: 0 24px; }
+.rd-featured h2 { font-size: clamp(22px, 3vw, 28px); color: var(--navy); margin: 0 0 6px; }
+.rd-featured p.note { font-size: 13px; color: rgba(22,50,79,.55); margin: 0 0 20px; }
+.rd-featured .video-embed { margin-bottom: 0; }
+.rd-embeds { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.rd-embed-col { min-width: 0; }
+@media (max-width: 760px) { .rd-embeds { grid-template-columns: 1fr; } }
+
+.rd-cta { max-width: 720px; margin: 56px auto 0; padding: 0 24px 96px; text-align: center; }
+.rd-cta p { color: rgba(22,50,79,.7); margin: 0 0 18px; }
+</style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
@@ -46,45 +87,82 @@
 </header>
 
 <main>
-  <section class="section section--page" id="redes">
-    <div class="section__inner">
-      <h1 class="section__title">Redes</h1>
+  <section id="redes">
+    <div class="rd-hero">
+      <h1 class="section__title" data-reveal>Redes</h1>
       <div class="rule rule--sun"></div>
-      <ul class="tracklist">
-        <li class="tracklist__row">
-          <a href="https://www.instagram.com/mariamayaceleste">
-            <span class="tracklist__name">Instagram</span>
-            <span class="tracklist__action">Abrir</span>
-          </a>
-        </li>
-        <li class="tracklist__row">
-          <a href="https://www.tiktok.com/@mariamayaceleste">
-            <span class="tracklist__name">TikTok</span>
-            <span class="tracklist__action">Abrir</span>
-          </a>
-        </li>
-        <li class="tracklist__row">
-          <a href="https://www.threads.net/@mariamayaceleste">
-            <span class="tracklist__name">Threads</span>
-            <span class="tracklist__action">Abrir</span>
-          </a>
-        </li>
-        <li class="tracklist__row">
-          <a href="https://www.youtube.com/@mariacelesteamaya">
-            <span class="tracklist__name">YouTube</span>
-            <span class="tracklist__action">Abrir</span>
-          </a>
-        </li>
-      </ul>
+      <p class="lede" data-reveal>Seguí el día a día de Azul Clarito, los adelantos de Memorias del Mar y las próximas fechas en vivo.</p>
+    </div>
+
+    <div class="rd-grid">
+      <a class="rd-card rd-ig" href="https://www.instagram.com/mariamayaceleste" target="_blank" rel="noopener" data-reveal>
+        <span class="rd-card__handle">@mariamayaceleste</span>
+        <svg class="rd-card__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="6" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="4.3" stroke="#fff" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.15" fill="#fff"/></svg>
+        <div class="rd-card__bottom">
+          <span class="rd-card__name">Instagram</span>
+          <span class="rd-card__arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a class="rd-card rd-tt" href="https://www.tiktok.com/@mariamayaceleste" target="_blank" rel="noopener" data-reveal>
+        <span class="rd-card__handle">@mariamayaceleste</span>
+        <svg class="rd-card__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.5 3c.4 2.2 1.8 3.7 4 4v3c-1.5.1-2.8-.3-4-1.1v6.4A5.6 5.6 0 1 1 11 9.8v3.2a2.5 2.5 0 1 0 2.4 2.5V3h3.1Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <div class="rd-card__bottom">
+          <span class="rd-card__name">TikTok</span>
+          <span class="rd-card__arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a class="rd-card rd-th" href="https://www.threads.net/@mariamayaceleste" target="_blank" rel="noopener" data-reveal>
+        <span class="rd-card__handle">@mariamayaceleste</span>
+        <svg class="rd-card__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2c5 0 8 3.2 8 8.3 0 1.9-.5 3.6-1.5 4.9-1 1.3-2.5 2.3-4.3 2.7.2-.7.3-1.5.3-2.3 2-.6 3-2 3-4C17.5 9 15.5 7.3 12.3 7.3c-3 0-5 1.6-5.3 4.3 1-.5 2.1-.7 3.2-.5 2 .4 3.1 1.8 3.1 3.7 0 2.4-1.9 4.2-5 4.2-3.5 0-6.3-2.3-6.3-6.7C2 6.8 5.8 2 12 2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <div class="rd-card__bottom">
+          <span class="rd-card__name">Threads</span>
+          <span class="rd-card__arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a class="rd-card rd-yt" href="https://www.youtube.com/@mariacelesteamaya" target="_blank" rel="noopener" data-reveal>
+        <span class="rd-card__handle">@mariacelesteamaya</span>
+        <svg class="rd-card__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5" stroke="#fff" stroke-width="1.6"/><path d="M10.3 9.3v5.4l4.8-2.7-4.8-2.7Z" fill="#fff"/></svg>
+        <div class="rd-card__bottom">
+          <span class="rd-card__name">YouTube</span>
+          <span class="rd-card__arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="rd-featured">
+      <h2 data-reveal>Publicaciones destacadas</h2>
+      <p class="note" data-reveal>Lo último de Instagram y TikTok, directo desde la fuente.</p>
+      <div class="rd-embeds">
+        <div class="rd-embed-col" data-reveal>
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUJ_HhkDPGG/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:16px; box-shadow:0 16px 36px rgba(11,42,91,.14); margin: 0 auto; max-width:540px; width:100%;">
+            <a href="https://www.instagram.com/p/DUJ_HhkDPGG/" target="_blank" rel="noopener">Ver esta publicación en Instagram</a>
+          </blockquote>
+        </div>
+        <div class="rd-embed-col" data-reveal>
+          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZSbfB7YCu/" style="max-width: 540px; min-width: 325px; margin: 0 auto;">
+            <section><a target="_blank" rel="noopener" href="https://vt.tiktok.com/ZSbfB7YCu/">Ver este video en TikTok</a></section>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <div class="rd-cta">
+      <p>¿Querés que sume una publicación puntual de Instagram, TikTok o Threads acá?</p>
+      <a class="btn btn--whatsapp" href="https://wa.me/50685916892?text=Te%20paso%20el%20link%20del%20post%20para%20la%20web" target="_blank" rel="noopener">Mandame el link por WhatsApp</a>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <img src="assets/azul-clarito-icon.jpg" alt="">
-  <p>Azul Clarito · Limón, Costa Rica</p>
+  <p>Desarrollado por INTEGRA SINERGIA · Limón, Costa Rica</p>
 </footer>
 
 <script src="script.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+<script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>
