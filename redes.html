@@ -54,6 +54,27 @@
 .rd-embed-col { min-width: 0; }
 @media (max-width: 760px) { .rd-embeds { grid-template-columns: 1fr; } }
 
+.tt-card {
+  display: flex; flex-direction: column; gap: 18px; justify-content: space-between;
+  max-width: 540px; width: 100%; margin: 0 auto; min-height: 280px;
+  padding: 28px 26px; border-radius: 16px; text-decoration: none;
+  background: linear-gradient(135deg, #0B2A5B 0%, #12121A 70%);
+  box-shadow: 0 16px 36px rgba(11,42,91,.14);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.tt-card:hover { transform: translateY(-4px); box-shadow: 0 22px 44px rgba(11,42,91,.22); }
+.tt-card:focus-visible { outline: 3px solid var(--aqua); outline-offset: 3px; }
+.tt-card__art { width: 64px; height: 64px; border-radius: 999px; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; }
+.tt-card__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 21px; color: #fff; margin: 0 0 6px; }
+.tt-card__sub { font-size: 14px; color: rgba(255,255,255,.72); margin: 0; }
+.tt-card__btn {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+  font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 14px; color: #fff;
+  background: rgba(255,255,255,.14); padding: 10px 18px; border-radius: 999px;
+  transition: background .2s ease;
+}
+.tt-card:hover .tt-card__btn { background: rgba(255,255,255,.26); }
+
 .rd-cta { max-width: 720px; margin: 56px auto 0; padding: 0 24px 96px; text-align: center; }
 .rd-cta p { color: rgba(22,50,79,.7); margin: 0 0 18px; }
 </style>
@@ -134,7 +155,7 @@
 
     <div class="rd-featured">
       <h2 data-reveal>Publicaciones destacadas</h2>
-      <p class="note" data-reveal>Lo último de Instagram y TikTok, directo desde la fuente.</p>
+      <p class="note" data-reveal>Lo último de Instagram, directo desde la fuente — y un acceso directo a TikTok.</p>
       <div class="rd-embeds">
         <div class="rd-embed-col" data-reveal>
           <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUJ_HhkDPGG/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:16px; box-shadow:0 16px 36px rgba(11,42,91,.14); margin: 0 auto; max-width:540px; width:100%;">
@@ -142,9 +163,18 @@
           </blockquote>
         </div>
         <div class="rd-embed-col" data-reveal>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariamayaceleste/video/7174637983524539653" data-video-id="7174637983524539653" style="max-width: 540px; min-width: 325px; margin: 0 auto;">
-            <section><a target="_blank" rel="noopener" title="@mariamayaceleste" href="https://www.tiktok.com/@mariamayaceleste?refer=embed">@mariamayaceleste</a></section>
-          </blockquote>
+          <a class="tt-card" href="https://www.tiktok.com/@mariamayaceleste" target="_blank" rel="noopener">
+            <div class="tt-card__art" aria-hidden="true">
+              <svg width="46" height="46" viewBox="0 0 24 24" fill="none"><path d="M16.5 3c.4 2.2 1.8 3.7 4 4v3c-1.5.1-2.8-.3-4-1.1v6.4A5.6 5.6 0 1 1 11 9.8v3.2a2.5 2.5 0 1 0 2.4 2.5V3h3.1Z" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="tt-card__body">
+              <p class="tt-card__title">Descubrí a Azul Clarito en TikTok</p>
+              <p class="tt-card__sub">Videos, música y momentos detrás del proyecto.</p>
+              <span class="tt-card__btn">Ver TikTok
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -162,7 +192,6 @@
 </footer>
 
 <script src="script.js"></script>
-<script async src="https://www.tiktok.com/embed.js"></script>
 <script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>
