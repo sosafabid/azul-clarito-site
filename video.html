@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Video — Azul Clarito</title>
-<meta name="description" content="Video de Azul Clarito.">
+<title>Videos — Azul Clarito | Galería audiovisual</title>
+<meta name="description" content="Explorá los videos de Azul Clarito: canciones, historias y momentos llevados a la pantalla. Mermaids & Fairies, with me too, Streets of Gold, Unavailable y TRADE.">
 <link rel="canonical" href="https://azulclaritocr.com/video.html">
-<meta property="og:title" content="Azul Clarito — Video">
+<meta property="og:title" content="Videos — Azul Clarito">
 <meta property="og:url" content="https://azulclaritocr.com/video.html">
-<meta property="og:description" content="Video de Azul Clarito.">
+<meta property="og:description" content="Canciones, historias y momentos de Azul Clarito llevados a la pantalla.">
 <meta property="og:image" content="https://azulclaritocr.com/assets/azul-clarito-badge.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/azul-clarito-icon.jpg">
@@ -16,10 +16,110 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
+<style>
+/* ===== Videos — estilos propios de video.html ===== */
+.vg-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero cinematográfico */
+.vg-hero { position: relative; overflow: hidden; background: radial-gradient(circle at 20% 10%, #16324F 0%, var(--navy) 55%, #081A30 100%); color: var(--paper); padding: 100px 0 84px; text-align: center; }
+.vg-hero__glow { position: absolute; width: 480px; height: 480px; border-radius: 50%; top: -220px; right: -120px; background: radial-gradient(circle, rgba(0,199,242,.35), transparent 70%); pointer-events: none; }
+.vg-reel { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.25); margin-bottom: 20px; }
+.vg-reel svg { animation: vgspin 7s linear infinite; }
+@keyframes vgspin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.vg-hero h1 { font-size: clamp(42px, 7vw, 72px); color: var(--paper); margin: 0 0 18px; letter-spacing: .02em; }
+.vg-hero p { max-width: 56ch; margin: 0 auto; font-size: 17px; line-height: 1.7; color: rgba(252,254,255,.85); }
+.vg-hero p + p { margin-top: 10px; color: rgba(252,254,255,.65); font-size: 15px; }
+
+/* Secciones */
+.vg-section { padding: 72px 0; }
+.vg-h2 { font-size: clamp(26px, 3.6vw, 34px); color: var(--navy); margin: 0 0 8px; }
+.vg-sub { color: rgba(22,50,79,.6); font-size: 15px; margin: 0 0 32px; }
+
+/* Video destacado */
+.feat-video { position: relative; border-radius: 26px; overflow: hidden; box-shadow: 0 30px 60px rgba(11,42,91,.22); background: #0B2A5B; }
+.feat-video__thumb { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; cursor: pointer; border: none; padding: 0; display: block; }
+.feat-video__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.feat-video__thumb:hover img { transform: scale(1.035); }
+.feat-video__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,42,91,0) 40%, rgba(11,42,91,.75) 100%); transition: background .3s ease; }
+.feat-video__thumb:hover .feat-video__overlay { background: linear-gradient(180deg, rgba(11,42,91,.15) 0%, rgba(11,42,91,.85) 100%); }
+.feat-video__play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 86px; height: 86px; border-radius: 999px; background: rgba(255,255,255,.94);
+  display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 36px rgba(0,0,0,.35);
+  transition: transform .25s ease, background .2s ease;
+}
+.feat-video__thumb:hover .feat-video__play { transform: translate(-50%,-50%) scale(1.08); background: #fff; }
+.feat-video__play svg { margin-left: 4px; }
+.feat-video__tag { position: absolute; top: 22px; left: 22px; background: var(--coral); color: #fff; font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; }
+.feat-video__body { padding: 30px 32px 34px; color: var(--paper); }
+.feat-video__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: clamp(26px, 3.4vw, 34px); margin: 0 0 10px; }
+.feat-video__text { color: rgba(252,254,255,.8); font-size: 16px; line-height: 1.7; max-width: 60ch; margin: 0 0 22px; }
+.feat-video__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* Galería */
+.vid-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+.vid-card { border-radius: 22px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 28px rgba(11,42,91,.08); transition: box-shadow .25s ease, transform .25s ease; }
+.vid-card:hover { transform: translateY(-4px); box-shadow: 0 22px 44px rgba(11,42,91,.16); }
+.vid-thumb { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #0B2A5B; }
+.vid-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s ease; }
+.vid-card:hover .vid-thumb img { transform: scale(1.04); }
+.vid-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,42,91,0) 55%, rgba(11,42,91,.65) 100%); opacity: .55; transition: opacity .25s ease; }
+.vid-card:hover .vid-overlay { opacity: .8; }
+.vid-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(145deg, var(--c1), var(--c2)); color: #fff; font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 13px; }
+.vid-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 56px; height: 56px; border-radius: 999px; background: rgba(255,255,255,.92); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0,0,0,.3);
+  transition: transform .2s ease, background .2s ease;
+}
+.vid-card:hover .vid-play { transform: translate(-50%,-50%) scale(1.08); background: #fff; }
+.vid-soon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(255,255,255,.18); border: 1.5px solid rgba(255,255,255,.5); color: #fff; font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 12px; padding: 8px 16px; border-radius: 999px; }
+.vid-card__body { padding: 20px 22px 24px; }
+.vid-card__title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 20px; color: var(--navy); margin: 0 0 8px; }
+.vid-card__text { font-size: 14px; line-height: 1.65; color: rgba(22,50,79,.78); margin: 0 0 16px; }
+.vid-card__actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.vid-card__actions .link-arrow { background: none; border: none; font-family: 'Quicksand', sans-serif; cursor: pointer; padding: 0; font-size: 15px; }
+.vid-soon-text { font-size: 13px; color: rgba(22,50,79,.45); font-style: italic; }
+
+/* CTA YouTube */
+.vg-youtube { background: linear-gradient(180deg, #F2FAFB 0%, #FFF8EC 100%); text-align: center; padding: 80px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.vg-youtube h2 { font-size: clamp(24px, 3.2vw, 30px); color: var(--navy); margin: 0 0 10px; }
+.vg-youtube p { color: rgba(22,50,79,.7); max-width: 50ch; margin: 0 auto 26px; }
+
+/* Cross-nav */
+.vg-cross { text-align: center; padding: 84px 0 96px; }
+.vg-cross h2 { font-size: clamp(26px, 3.6vw, 34px); color: var(--navy); margin: 0 0 10px; }
+.vg-cross p { color: rgba(22,50,79,.7); max-width: 54ch; margin: 0 auto 28px; }
+.vg-cross__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* Modal / lightbox */
+.vg-modal { position: fixed; inset: 0; z-index: 80; display: none; align-items: center; justify-content: center; padding: 24px; }
+.vg-modal.is-open { display: flex; }
+.vg-modal__backdrop { position: absolute; inset: 0; background: rgba(8,15,25,.82); }
+.vg-modal__frame { position: relative; width: min(960px, 100%); aspect-ratio: 16/9; background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+.vg-modal__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.vg-modal__close {
+  position: absolute; top: -46px; right: 0; width: 38px; height: 38px; border-radius: 999px;
+  background: rgba(255,255,255,.14); border: 1.5px solid rgba(255,255,255,.4); color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: background .15s ease;
+}
+.vg-modal__close:hover { background: rgba(255,255,255,.28); }
+
+@media (prefers-reduced-motion: reduce) {
+  .vg-reel svg { animation: none; }
+  .feat-video__thumb img, .vid-thumb img, .feat-video__play, .vid-play { transition: none; }
+}
+
+@media (max-width: 760px) {
+  .vg-hero { padding: 72px 0 60px; }
+  .vg-section { padding: 52px 0; }
+  .vid-grid { grid-template-columns: 1fr; gap: 20px; }
+  .feat-video__body { padding: 24px 20px 28px; }
+  .feat-video__play, .vid-play { width: 64px; height: 64px; }
+  .vid-play { width: 52px; height: 52px; }
+  .vg-cross__actions { flex-direction: column; align-items: stretch; }
+}
+</style>
 </head>
 <body>
 
@@ -46,21 +146,140 @@
 </header>
 
 <main>
-  <section class="section section--page" id="video">
-    <div class="section__inner">
-      <h1 class="section__title">Video</h1>
-      <div class="rule rule--aqua"></div>
-      <div class="video-embed">
-        <iframe
-          src="https://www.youtube.com/embed/gW8F9eN5Qf0"
-          title="Azul Clarito — video"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy"></iframe>
+
+  <!-- 1. Hero -->
+  <section class="vg-hero">
+    <div class="vg-hero__glow" aria-hidden="true"></div>
+    <div class="vg-wrap">
+      <span class="vg-reel" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="2.4" fill="#fff"/><circle cx="12" cy="4.4" r="1.4" fill="#fff"/><circle cx="19.6" cy="12" r="1.4" fill="#fff"/><circle cx="12" cy="19.6" r="1.4" fill="#fff"/><circle cx="4.4" cy="12" r="1.4" fill="#fff"/></svg>
+      </span>
+      <h1 data-reveal>Videos</h1>
+      <p data-reveal>Canciones, historias y momentos de Azul Clarito llevados a la pantalla.</p>
+      <p data-reveal>Explorá su universo musical a través de videos que acompañan algunas de sus canciones y cuentan parte de sus historias.</p>
+    </div>
+  </section>
+
+  <!-- 2. Video destacado -->
+  <section class="vg-section vg-featured">
+    <div class="vg-wrap">
+      <h2 class="vg-h2" data-reveal>Video destacado</h2>
+      <p class="vg-sub" data-reveal>Empezá por acá.</p>
+      <div class="feat-video" data-reveal>
+        <button type="button" class="feat-video__thumb" data-open="mermaids-fairies" aria-label="Reproducir Mermaids &amp; Fairies">
+          <img src="https://img.youtube.com/vi/gW8F9eN5Qf0/maxresdefault.jpg" alt="Miniatura de Mermaids &amp; Fairies" loading="lazy" width="1280" height="720">
+          <div class="feat-video__overlay" aria-hidden="true"></div>
+          <span class="feat-video__tag">Video destacado</span>
+          <span class="feat-video__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#0B2A5B" d="M8 5v14l11-7z"/></svg>
+          </span>
+        </button>
+        <div class="feat-video__body">
+          <h3 class="feat-video__title">Mermaids &amp; Fairies</h3>
+          <p class="feat-video__text">Una canción sobre el deseo de reencontrarse con mamá en un sueño.</p>
+          <div class="feat-video__actions">
+            <button type="button" class="btn btn--whatsapp" style="background:var(--aqua);box-shadow:none;" data-open="mermaids-fairies">Ver video</button>
+            <a class="btn btn--outline" style="color:var(--paper);border-color:rgba(255,255,255,.6);" href="musica.html#song-mermaids-fairies">Escuchar canción</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- 3. Más historias para ver -->
+  <section class="vg-section" style="background:#F9FBFC;border-top:1px solid var(--line);">
+    <div class="vg-wrap">
+      <h2 class="vg-h2" data-reveal>Más historias para ver</h2>
+      <p class="vg-sub" data-reveal>Cada video acompaña una canción distinta de Azul Clarito.</p>
+      <div class="vid-grid">
+      <article class="vid-card" data-reveal style="transition-delay:0ms">
+        <div class="vid-thumb">
+          <img src="https://img.youtube.com/vi/7HWtaWefOjM/maxresdefault.jpg" alt="Miniatura del video" loading="lazy" width="640" height="360">
+          <div class="vid-overlay" aria-hidden="true"></div>
+          <button type="button" class="vid-play" data-open="with-me-too" aria-label="Reproducir with me too"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#0B2A5B" d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="vid-card__body">
+          <h3 class="vid-card__title">with me too</h3>
+          <p class="vid-card__text">Una balada íntima sobre la ausencia, los recuerdos y el deseo de tener a mamá cerca.</p>
+          <div class="vid-card__actions">
+            <button type="button" class="link-arrow" data-open="with-me-too">Ver video</button>
+            <a class="listen-link" href="musica.html#song-with-me-too">Escuchar canción</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="vid-card" data-reveal style="transition-delay:90ms">
+        <div class="vid-thumb">
+          <img src="https://img.youtube.com/vi/QIpjfXTZazE/maxresdefault.jpg" alt="Miniatura del video" loading="lazy" width="640" height="360">
+          <div class="vid-overlay" aria-hidden="true"></div>
+          <button type="button" class="vid-play" data-open="streets-of-gold" aria-label="Reproducir Streets of Gold"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#0B2A5B" d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="vid-card__body">
+          <h3 class="vid-card__title">Streets of Gold</h3>
+          <p class="vid-card__text">Una carta musical a mamá en el cielo, convertida en preguntas que mantienen abierto el vínculo.</p>
+          <div class="vid-card__actions">
+            <button type="button" class="link-arrow" data-open="streets-of-gold">Ver video</button>
+            <a class="listen-link" href="musica.html#song-streets-of-gold">Escuchar canción</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="vid-card" data-reveal style="transition-delay:0ms">
+        <div class="vid-thumb">
+          <img src="https://img.youtube.com/vi/CgWJfRGX6L4/maxresdefault.jpg" alt="Miniatura del video" loading="lazy" width="640" height="360">
+          <div class="vid-overlay" aria-hidden="true"></div>
+          <button type="button" class="vid-play" data-open="unavailable" aria-label="Reproducir Unavailable"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#0B2A5B" d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="vid-card__body">
+          <h3 class="vid-card__title">Unavailable</h3>
+          <p class="vid-card__text">Una canción electrónica sobre la vulnerabilidad de enamorarse de alguien que no está emocionalmente disponible.</p>
+          <div class="vid-card__actions">
+            <button type="button" class="link-arrow" data-open="unavailable">Ver video</button>
+            <a class="listen-link" href="musica.html#song-unavailable">Escuchar canción</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="vid-card" data-reveal style="transition-delay:90ms">
+        <div class="vid-thumb">
+          <img src="https://img.youtube.com/vi/2m5z3Smjd18/maxresdefault.jpg" alt="Miniatura del video" loading="lazy" width="640" height="360">
+          <div class="vid-overlay" aria-hidden="true"></div>
+          <button type="button" class="vid-play" data-open="trade" aria-label="Reproducir TRADE"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#0B2A5B" d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="vid-card__body">
+          <h3 class="vid-card__title">TRADE</h3>
+          <p class="vid-card__text">Una súplica íntima por cinco segundos más con mamá, entre sonidos alternativos y una conversación con Dios.</p>
+          <div class="vid-card__actions">
+            <button type="button" class="link-arrow" data-open="trade">Ver video</button>
+            <a class="listen-link" href="musica.html#song-trade">Escuchar canción</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. YouTube -->
+  <section class="vg-youtube">
+    <div class="vg-wrap">
+      <h2 data-reveal>¿Querés seguir viendo?</h2>
+      <p data-reveal>Encontrá más videos y acompañá el recorrido musical de Azul Clarito en YouTube.</p>
+      <a class="btn btn--whatsapp" style="background:#E1283F;" href="https://www.youtube.com/@mariacelesteamaya/videos" target="_blank" rel="noopener">Visitar canal de YouTube</a>
+    </div>
+  </section>
+
+  <!-- 5. Cross-nav -->
+  <section class="vg-cross">
+    <div class="vg-wrap">
+      <h2 data-reveal>Seguí descubriendo a Azul Clarito</h2>
+      <p data-reveal>Explorá sus canciones, conocé las historias detrás de su música y descubrí Memorias del Mar.</p>
+      <div class="vg-cross__actions">
+        <a class="btn btn--whatsapp" style="background:var(--navy);box-shadow:none;" href="musica.html">Escuchar música</a>
+        <a class="btn btn--outline" href="ep.html">Descubrir Memorias del Mar</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
@@ -68,6 +287,57 @@
   <p>Desarrollado por INTEGRA SINERGIA · Limón, Costa Rica</p>
 </footer>
 
+<!-- Modal de reproducción -->
+<div class="vg-modal" id="vgModal" role="dialog" aria-modal="true" aria-label="Reproductor de video">
+  <div class="vg-modal__backdrop" data-close></div>
+  <div class="vg-modal__frame">
+    <button type="button" class="vg-modal__close" data-close aria-label="Cerrar video">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+    <div id="vgPlayerSlot"></div>
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script>
+(function () {
+  var VIDEOS = {"mermaids-fairies": {"title": "Mermaids & Fairies", "yid": "gW8F9eN5Qf0"}, "with-me-too": {"title": "with me too", "yid": "7HWtaWefOjM"}, "streets-of-gold": {"title": "Streets of Gold", "yid": "QIpjfXTZazE"}, "unavailable": {"title": "Unavailable", "yid": "CgWJfRGX6L4"}, "trade": {"title": "TRADE", "yid": "2m5z3Smjd18"}};
+  var modal = document.getElementById('vgModal');
+  var slot = document.getElementById('vgPlayerSlot');
+  var lastFocused = null;
+
+  function openVideo(id) {
+    var v = VIDEOS[id];
+    if (!v || !v.yid) return; // sin URL configurada: no se abre nada, se evita un enlace incorrecto
+    lastFocused = document.activeElement;
+    slot.innerHTML = '<iframe src="https://www.youtube.com/embed/' + v.yid + '?autoplay=1&rel=0" ' +
+      'title="' + v.title.replace(/"/g, '&quot;') + '" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('.vg-modal__close').focus();
+  }
+
+  function closeVideo() {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    slot.innerHTML = ''; // destruye el iframe: deja de sonar y de cargar
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-open]').forEach(function (el) {
+    el.addEventListener('click', function () { openVideo(el.getAttribute('data-open')); });
+  });
+  modal.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', closeVideo);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeVideo();
+  });
+})();
+</script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
